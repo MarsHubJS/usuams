@@ -9,15 +9,37 @@
         theme="dark"
         :inlineCollapsed="collapsed"
       >
+        <a-menu-item :key="'/'">
+          <router-link :to="{ path: '/' }">
+            <a-icon type="home" />
+            <span>首页</span>
+          </router-link>
+        </a-menu-item>
         <a-sub-menu key="sub1">
           <span slot="title">
             <a-icon type="solution" />
             <span>事务管理</span>
           </span>
-          <a-menu-item key="1">活动管理</a-menu-item>
-          <a-menu-item key="2">例会管理</a-menu-item>
-          <a-menu-item key="3">部门事务</a-menu-item>
-          <a-menu-item key="4">组织建设</a-menu-item>
+          <a-menu-item key="1">
+            <router-link :to="{ path: '/affairsmanagement' }">
+              活动管理
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="2">
+            <router-link :to="{ path: '/meetingmanagement' }">
+              例会管理
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="3">
+            <router-link :to="{ path: '/departmentmanagement' }">
+              部门事务
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="4">
+            <router-link :to="{ path: '/organizationconstruction' }">
+              组织建设
+            </router-link>
+          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <span slot="title">
