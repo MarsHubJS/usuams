@@ -3,8 +3,8 @@
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu
-        :defaultOpenKeys="[this.$route.meta.subkey]"
-        :defaultSelectedKeys="[this.$route.meta.key]"
+        :defaultSelectedKeys="['1']"
+        :defaultOpenKeys="['sub1']"
         mode="inline"
         theme="dark"
         :inlineCollapsed="collapsed"
@@ -15,38 +15,48 @@
             <span>首页</span>
           </router-link>
         </a-menu-item>
-        <a-sub-menu key="affair">
+        <a-sub-menu key="sub1">
           <span slot="title">
             <a-icon type="solution" />
             <span>事务管理</span>
           </span>
-          <a-menu-item key="affairsmanagement">
+          <a-menu-item key="1">
             <router-link :to="{ path: '/affairsmanagement' }">
               活动管理
             </router-link>
           </a-menu-item>
-          <a-menu-item key="meetingmanagement">
+          <a-menu-item key="2">
             <router-link :to="{ path: '/meetingmanagement' }">
               例会管理
             </router-link>
           </a-menu-item>
+          <a-menu-item key="3">
+            <router-link :to="{ path: '/departmentmanagement' }">
+              部门事务
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="4">
+            <router-link :to="{ path: '/organizationconstruction' }">
+              组织建设
+            </router-link>
+          </a-menu-item>
         </a-sub-menu>
-        <!-- <a-sub-menu key="sub2">
+        <a-sub-menu key="sub2">
           <span slot="title">
             <a-icon type="team" />
             <span>人员管理</span>
           </span>
           <a-menu-item key="5">部门管理</a-menu-item>
           <a-menu-item key="6">部门招新</a-menu-item>
-        </a-sub-menu> -->
-        <!-- <a-sub-menu key="sub3">
+        </a-sub-menu>
+        <a-sub-menu key="sub3">
           <span slot="title">
             <a-icon type="dollar" />
             <span>财产管理</span>
           </span>
           <a-menu-item key="9">办公室</a-menu-item>
           <a-menu-item key="10">资产</a-menu-item>
-        </a-sub-menu> -->
+        </a-sub-menu>
         <!-- <a-sub-menu key="sub4">
           <span slot="title">
             <a-icon type="sound" />
@@ -61,25 +71,11 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <a-row type="flex" align="center">
-          <a-col :span="8">
-            <a-icon
-              class="trigger"
-              :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-              @click="() => (collapsed = !collapsed)"
-            />
-          </a-col>
-          <a-col :span="8" style="text-align:center">
-            <span>高校学生会事务管理系统</span>
-          </a-col>
-          <a-col :span="7" style="text-align:right">
-            <span>超级管理员</span>
-            <a-divider type="vertical" />
-            <span>admin</span>
-            <a-divider type="vertical" />
-            <span><a-icon type="poweroff"/></span>
-          </a-col>
-        </a-row>
+        <a-icon
+          class="trigger"
+          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="() => (collapsed = !collapsed)"
+        />
       </a-layout-header>
       <a-layout-content
         :style="{
