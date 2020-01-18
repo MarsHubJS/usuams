@@ -61,7 +61,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <a-row type="flex" align="center">
+        <a-row type="flex" align="middle">
           <a-col :span="8">
             <a-icon
               class="trigger"
@@ -81,9 +81,13 @@
           </a-col>
         </a-row>
       </a-layout-header>
+      <a-breadcrumb style="margin: 16px 0 0 0;padding: 0 24px 0 24px">
+        <a-breadcrumb-item>{{ this.$route.meta.subkey }}</a-breadcrumb-item>
+        <a-breadcrumb-item>{{ this.$route.meta.key }}</a-breadcrumb-item>
+      </a-breadcrumb>
       <a-layout-content
         :style="{
-          margin: '24px 16px',
+          margin: '16px',
           padding: '24px',
           background: '#fff',
           minHeight: '280px'
