@@ -70,22 +70,22 @@
             />
           </a-col>
           <a-col :span="8" style="text-align:center">
-            <span>高校学生会事务管理系统</span>
+            <h3>高校学生会事务管理系统</h3>
           </a-col>
           <a-col :span="7" style="text-align:right">
-            <span>超级管理员</span>
+            <a-tag color="red">超级管理员</a-tag>
             <a-divider type="vertical" />
-            <span>admin</span>
+            <span>{{ this.$store.state.loginInfo.username }}</span>
             <a-divider type="vertical" />
             <span><a-icon type="poweroff"/></span>
           </a-col>
         </a-row>
       </a-layout-header>
       <a-breadcrumb style="margin: 16px 0 0 0;padding: 0 24px 0 24px">
-        <a-breadcrumb-item v-show="this.$route.meta.name !== '首页'"
-          >/{{ this.$route.meta.subname }}</a-breadcrumb-item
-        >
-        <a-breadcrumb-item>/{{ this.$route.meta.name }}</a-breadcrumb-item>
+        <a-breadcrumb-item v-show="this.$route.meta.name !== '首页'">
+          {{ this.$route.meta.subname }}
+        </a-breadcrumb-item>
+        <a-breadcrumb-item>{{ this.$route.meta.name }} </a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content
         :style="{

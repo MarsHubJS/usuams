@@ -8,7 +8,8 @@ const admin = [
         component: () => import("@/pages/Home.vue"),
         meta: {
           key: "",
-          name: "首页"
+          name: "首页",
+          title: "首页"
         }
       },
       {
@@ -18,7 +19,8 @@ const admin = [
           subname: "事务管理",
           name: "活动管理",
           subkey: "affair",
-          key: "affairsmanagement"
+          key: "affairsmanagement",
+          title: "活动管理"
         }
       },
       {
@@ -28,7 +30,8 @@ const admin = [
           subname: "事务管理",
           name: "例会管理",
           subkey: "affair",
-          key: "meetingmanagement"
+          key: "meetingmanagement",
+          title: "例会管理"
         }
       }
     ]

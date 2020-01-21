@@ -32,7 +32,8 @@ import {
   Popover,
   Checkbox,
   Divider,
-  Breadcrumb
+  Breadcrumb,
+  Tag
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -61,6 +62,7 @@ Vue.use(InputNumber).use(Popover);
 Vue.use(Checkbox);
 Vue.use(Divider);
 Vue.use(Breadcrumb);
+Vue.use(Tag);
 message.config({
   duration: 5
 });
@@ -121,9 +123,31 @@ NProgress.configure({
   // minimum: 0.3, // 初始化时的最小百分比
 });
 
+import admin from "@/router/admin";
+
 // 实例化Vue
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created() {
+    let type = sessionStorage.getItem("type");
+    if (type !== "") {
+      switch (type) {
+        case "1":
+          this.$router.addRoutes(admin);
+          break;
+        default:
+          break;
+      }
+    } else {
+      this.$router.addRoutes([
+        {
+          path: "*",
+          redirect: "/login"
+        }
+      ]);
+      this.$router.push("login");
+    }
+  }
 }).$mount("#app");
