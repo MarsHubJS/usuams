@@ -29,7 +29,10 @@ import {
   Pagination,
   InputNumber,
   notification,
-  Popover
+  Popover,
+  Checkbox,
+  Divider,
+  Breadcrumb
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -55,6 +58,9 @@ Vue.use(Progress);
 Vue.use(LocaleProvider);
 Vue.use(Pagination);
 Vue.use(InputNumber).use(Popover);
+Vue.use(Checkbox);
+Vue.use(Divider);
+Vue.use(Breadcrumb);
 message.config({
   duration: 5
 });

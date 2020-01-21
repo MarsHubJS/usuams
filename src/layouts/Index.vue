@@ -3,14 +3,14 @@
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu
-        :defaultOpenKeys="[this.$route.meta.subkey]"
-        :defaultSelectedKeys="[this.$route.meta.key]"
+        :defaultOpenKeys="[`${this.$route.meta.subkey}`]"
+        :defaultSelectedKeys="[`${this.$route.meta.key}`]"
         mode="inline"
         theme="dark"
         :inlineCollapsed="collapsed"
       >
-        <a-menu-item :key="'/'">
-          <router-link :to="{ path: '/' }">
+        <a-menu-item key="">
+          <router-link :to="{ path: '/home' }">
             <a-icon type="home" />
             <span>首页</span>
           </router-link>
@@ -82,8 +82,10 @@
         </a-row>
       </a-layout-header>
       <a-breadcrumb style="margin: 16px 0 0 0;padding: 0 24px 0 24px">
-        <a-breadcrumb-item>{{ this.$route.meta.subkey }}</a-breadcrumb-item>
-        <a-breadcrumb-item>{{ this.$route.meta.key }}</a-breadcrumb-item>
+        <a-breadcrumb-item v-show="this.$route.meta.name !== '首页'"
+          >/{{ this.$route.meta.subname }}</a-breadcrumb-item
+        >
+        <a-breadcrumb-item>/{{ this.$route.meta.name }}</a-breadcrumb-item>
       </a-breadcrumb>
       <a-layout-content
         :style="{
