@@ -1,9 +1,9 @@
 <template>
   <a-row :gutter="16">
-    <a-col :span="6">
+    <a-col :span="5">
       <affairsTree></affairsTree>
     </a-col>
-    <a-col :span="18">
+    <a-col :span="19">
       <affairsTable></affairsTable>
     </a-col>
   </a-row>

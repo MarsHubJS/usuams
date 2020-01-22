@@ -14,39 +14,53 @@
 <script>
 const columns = [
   {
-    title: "事务名称",
+    title: "姓名",
     dataIndex: "name"
   },
   {
-    title: "申请时间",
-    dataIndex: "create_date",
+    title: "学号",
+    dataIndex: "number"
+  },
+  {
+    title: "用户名",
+    dataIndex: "username"
+  },
+  {
+    title: "性别",
+    dataIndex: "sex"
+  },
+  {
+    title: "学院",
+    dataIndex: "collage"
+  },
+  {
+    title: "专业",
+    dataIndex: "major"
+  },
+  {
+    title: "年级",
+    dataIndex: "grade"
+  },
+  {
+    title: "班级",
+    dataIndex: "class"
+  },
+  {
+    title: "部门",
+    dataIndex: "department"
+  },
+  {
+    title: "用户权限",
+    dataIndex: "user_type"
+  },
+  {
+    title: "入会时间",
+    dataIndex: "join_date",
     scopedSlots: { customRender: "time" }
   },
   {
-    title: "开始时间",
-    dataIndex: "start_date",
-    scopedSlots: { customRender: "time" }
-  },
-  {
-    title: "结束时间",
-    dataIndex: "end_date",
-    scopedSlots: { customRender: "time" }
-  },
-  {
-    title: "负责人",
-    dataIndex: "leader"
-  },
-  {
-    title: "优先级",
-    dataIndex: "level"
-  },
-  {
-    title: "状态",
-    dataIndex: "state"
-  },
-  {
-    title: "查看内容",
-    dataIndex: "context",
+    title: "退会时间",
+    dataIndex: "exit_date",
     scopedSlots: { customRender: "time" }
   },
   {
@@ -70,7 +84,7 @@ export default {
   methods: {
     getData() {
       this.loading = true;
-      this.$http.get("affair").then(res => {
+      this.$http.get("user").then(res => {
         console.log(res);
         this.loading = false;
         this.data = res.data;

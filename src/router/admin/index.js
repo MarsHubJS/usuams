@@ -33,6 +33,28 @@ const admin = [
           key: "meetingmanagement",
           title: "例会管理"
         }
+      },
+      {
+        path: "/departmentmanagement",
+        component: () => import("@/pages/user/DepartmentManagement.vue"),
+        meta: {
+          subname: "用户管理",
+          name: "部门管理",
+          subkey: "user",
+          key: "departmentmanagement",
+          title: "部门管理"
+        }
+      },
+      {
+        path: "/departmentrecruitment",
+        component: () => import("@/pages/user/DepartmentRecruitment.vue"),
+        meta: {
+          subname: "用户管理",
+          name: "部门招新",
+          subkey: "user",
+          key: "departmentrecruitment",
+          title: "部门招新"
+        }
       }
     ]
   }

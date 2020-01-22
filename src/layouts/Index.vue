@@ -31,14 +31,22 @@
             </router-link>
           </a-menu-item>
         </a-sub-menu>
-        <!-- <a-sub-menu key="sub2">
+        <a-sub-menu key="user">
           <span slot="title">
             <a-icon type="team" />
             <span>人员管理</span>
           </span>
-          <a-menu-item key="5">部门管理</a-menu-item>
-          <a-menu-item key="6">部门招新</a-menu-item>
-        </a-sub-menu> -->
+          <a-menu-item key="departmentmanagement">
+            <router-link :to="{ path: '/departmentmanagement' }">
+              部门管理
+            </router-link>
+          </a-menu-item>
+          <a-menu-item key="departmentrecruitment">
+            <router-link :to="{ path: '/departmentrecruitment' }">
+              部门招新
+            </router-link>
+          </a-menu-item>
+        </a-sub-menu>
         <!-- <a-sub-menu key="sub3">
           <span slot="title">
             <a-icon type="dollar" />

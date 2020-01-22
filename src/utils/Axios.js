@@ -1,7 +1,7 @@
 import axios from "axios";
 // import router from "./router";
 import config from "@/config";
-// import { notification } from "ant-design-vue";
+import { notification } from "ant-design-vue";
 
 const Axios = axios.create({
   baseURL: config.baseurl,
@@ -40,21 +40,21 @@ Axios.interceptors.response.use(
     if (res.data) {
       return res.data;
     } else {
-      // notification.warning({
-      //   message: "系统错误",
-      //   description: `没有返回内容! `
-      // });
+      notification.warning({
+        message: "系统错误",
+        description: `没有返回内容! `
+      });
     }
   },
 
   err => {
-    // console.log(err);
-    // notification.warning({
-    //   message: "系统错误",
-    //   description: `系统错误! ${err}`
-    // });
+    console.log(err);
+    notification.warning({
+      message: "系统错误",
+      description: `系统错误! ${err}`
+    });
     // router.push("/500");
-    //使错误传递到then中!
+    // 使错误传递到then中!
     return Promise.resolve(err);
     // return Promise.reject(err);
   }
