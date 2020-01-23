@@ -15,43 +15,52 @@
 const columns = [
   {
     title: "事务名称",
-    dataIndex: "name"
+    dataIndex: "name",
+    align: "center"
   },
   {
     title: "申请时间",
     dataIndex: "create_date",
-    scopedSlots: { customRender: "time" }
+    scopedSlots: { customRender: "time" },
+    align: "center"
   },
   {
     title: "开始时间",
     dataIndex: "start_date",
-    scopedSlots: { customRender: "time" }
+    scopedSlots: { customRender: "time" },
+    align: "center"
   },
   {
     title: "结束时间",
     dataIndex: "end_date",
-    scopedSlots: { customRender: "time" }
+    scopedSlots: { customRender: "time" },
+    align: "center"
   },
   {
     title: "负责人",
-    dataIndex: "leader"
+    dataIndex: "leader",
+    align: "center"
   },
   {
     title: "优先级",
-    dataIndex: "level"
+    dataIndex: "level",
+    align: "center"
   },
   {
     title: "状态",
-    dataIndex: "state"
+    dataIndex: "state",
+    align: "center"
   },
   {
     title: "查看内容",
     dataIndex: "context",
-    scopedSlots: { customRender: "time" }
+    scopedSlots: { customRender: "time" },
+    align: "center"
   },
   {
     title: "操作",
-    dataIndex: "id"
+    dataIndex: "id",
+    align: "center"
   }
 ];
 

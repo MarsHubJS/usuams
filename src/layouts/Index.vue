@@ -3,13 +3,14 @@
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu
-        :defaultOpenKeys="[`${this.$route.meta.subkey}`]"
+        :openKeys="openKeys"
         :defaultSelectedKeys="[`${this.$route.meta.key}`]"
         mode="inline"
         theme="dark"
         :inlineCollapsed="collapsed"
+        @openChange="openChange"
       >
-        <a-menu-item key="">
+        <a-menu-item key="" @click="selectHome">
           <router-link :to="{ path: '/home' }">
             <a-icon type="home" />
             <span>首页</span>
@@ -78,14 +79,16 @@
             />
           </a-col>
           <a-col :span="8" style="text-align:center">
-            <h3>高校学生会事务管理系统</h3>
+            <span class="title">
+              <a-icon type="block" />高校学生会事务管理系统
+            </span>
           </a-col>
           <a-col :span="7" style="text-align:right">
             <a-tag color="red">超级管理员</a-tag>
             <a-divider type="vertical" />
             <span>{{ this.$store.state.loginInfo.username }}</span>
             <a-divider type="vertical" />
-            <span><a-icon type="poweroff"/></span>
+            <a @click="logout"><a-icon type="poweroff"/></a>
           </a-col>
         </a-row>
       </a-layout-header>
@@ -112,12 +115,38 @@
 export default {
   data() {
     return {
-      collapsed: false
+      collapsed: false,
+      rootSubmenuKeys: ["affairs", "user"],
+      openKeys: [`${this.$route.meta.subkey}`]
     };
+  },
+  methods: {
+    openChange(openKeys) {
+      console.log(openKeys);
+      const latestOpenKey = openKeys.find(
+        key => this.openKeys.indexOf(key) === -1
+      );
+      this.openKeys = latestOpenKey ? [latestOpenKey] : [];
+    },
+    selectHome() {
+      this.openKeys = [];
+    },
+    logout() {
+      this.$router.push("/login");
+      sessionStorage.clear();
+      this.$router.go(0);
+    }
   }
 };
 </script>
 <style lang="less">
+.title {
+  padding: 5px 30px;
+  font-size: 16px;
+  font-weight: 800;
+  border: 2px solid rgb(207, 207, 207);
+  border-radius: 50px;
+}
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
