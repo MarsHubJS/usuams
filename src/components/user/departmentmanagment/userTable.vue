@@ -3,8 +3,8 @@
     :columns="columns"
     :rowKey="record => record.id"
     :dataSource="data"
-    :pagination="pagination"
     :loading="loading"
+    :pagination="pagination"
     @change="handleTableChange"
   >
     <div slot="time" slot-scope="text">
@@ -107,7 +107,7 @@ export default {
     return {
       data: [],
       pagination: {
-        pageSize: 1,
+        pageSize: 10,
         current: 1,
         total: 0
       },
@@ -120,7 +120,7 @@ export default {
       this.loading = true;
       let params = {
         pageSize: this.pagination.pageSize,
-        pageNumber: this.pagination.current
+        current: this.pagination.current
       };
       this.$http.get("user", { params }).then(res => {
         console.log(res);

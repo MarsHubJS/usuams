@@ -4,6 +4,8 @@
     :rowKey="record => record.id"
     :dataSource="data"
     :loading="loading"
+    :pagination="pagination"
+    @change="handleTableChange"
   >
     <div slot="time" slot-scope="text">
       <span>{{ moment(text * 1000).format("YYYY-MM-DD HH:mm:ss") }}</span>
@@ -71,7 +73,11 @@ export default {
   data() {
     return {
       data: [],
-      pagination: {},
+      pagination: {
+        pageSize: 10,
+        current: 1,
+        total: 0
+      },
       loading: false,
       columns
     };
@@ -79,11 +85,21 @@ export default {
   methods: {
     getData() {
       this.loading = true;
-      this.$http.get("affair").then(res => {
+      let params = {
+        pageSize: this.pagination.pageSize,
+        current: this.pagination.current
+      };
+      this.$http.get("affair", { params }).then(res => {
         console.log(res);
         this.loading = false;
         this.data = res.data;
+        this.pagination.total = res.total;
       });
+    },
+    handleTableChange(pagination) {
+      console.log(pagination);
+      this.pagination.current = pagination.current;
+      this.getData();
     }
   }
 };
