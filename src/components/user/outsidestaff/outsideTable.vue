@@ -83,8 +83,18 @@ const columns = [
     align: "center"
   },
   {
-    title: "部门",
-    dataIndex: "department",
+    title: "第一志愿",
+    dataIndex: "depa1",
+    align: "center"
+  },
+  {
+    title: "第一志愿",
+    dataIndex: "depa2",
+    align: "center"
+  },
+  {
+    title: "第一志愿",
+    dataIndex: "depa3",
     align: "center"
   },
   {
@@ -94,14 +104,8 @@ const columns = [
     align: "center"
   },
   {
-    title: "入会时间",
-    dataIndex: "join_date",
-    scopedSlots: { customRender: "time" },
-    align: "center"
-  },
-  {
-    title: "退会时间",
-    dataIndex: "exit_date",
+    title: "申请时间",
+    dataIndex: "create_date",
     scopedSlots: { customRender: "time" },
     align: "center"
   },
@@ -121,7 +125,7 @@ export default {
     return {
       data: [],
       pagination: {
-        pageSize: 1,
+        pageSize: 10,
         current: 1,
         total: 0,
         //showSizeChanger: true,
@@ -139,7 +143,7 @@ export default {
         pageSize: this.pagination.pageSize,
         current: this.pagination.current
       };
-      this.$http.get("user", { params }).then(res => {
+      this.$http.get("guest", { params }).then(res => {
         console.log(res);
         this.loading = false;
         this.data = res.data;

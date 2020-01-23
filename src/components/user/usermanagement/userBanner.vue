@@ -1,0 +1,22 @@
+<template>
+  <div>
+    <a-row>
+      <a-col :span="2">
+        <a-button type="primary">新增用户</a-button>
+      </a-col>
+      <a-col :span="2">
+        <a-button type="danger">批量删除</a-button>
+      </a-col>
+      <a-col :span="4">
+        <a-input placeholder="姓名/学号模糊查询"></a-input>
+      </a-col>
+    </a-row>
+    <div style="height:16px"></div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style></style>

@@ -35,25 +35,25 @@ const admin = [
         }
       },
       {
-        path: "/departmentmanagement",
-        component: () => import("@/pages/user/DepartmentManagement.vue"),
+        path: "/usermanagement",
+        component: () => import("@/pages/user/UserManagement.vue"),
         meta: {
-          subname: "用户管理",
-          name: "部门管理",
+          subname: "人员管理",
+          name: "用户管理",
           subkey: "user",
-          key: "departmentmanagement",
-          title: "部门管理"
+          key: "usermanagement",
+          title: "用户管理"
         }
       },
       {
-        path: "/departmentrecruitment",
-        component: () => import("@/pages/user/DepartmentRecruitment.vue"),
+        path: "/outsidestaff",
+        component: () => import("@/pages/user/OutsideStaff.vue"),
         meta: {
-          subname: "用户管理",
-          name: "部门招新",
+          subname: "人员管理",
+          name: "会外人员",
           subkey: "user",
-          key: "departmentrecruitment",
-          title: "部门招新"
+          key: "outsidestaff",
+          title: "会外人员"
         }
       }
     ]

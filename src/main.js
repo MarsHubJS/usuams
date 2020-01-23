@@ -127,6 +127,8 @@ NProgress.configure({
 });
 
 import admin from "@/router/admin";
+import teacher from "@/router/teacher";
+import student from "@/router/student";
 
 // 实例化Vue
 new Vue({
@@ -137,10 +139,20 @@ new Vue({
     let type = sessionStorage.getItem("type");
     if (type !== "") {
       switch (type) {
-        case "1":
+        case 1:
           this.$router.addRoutes(admin);
           break;
-        default:
+        case 2:
+          this.$router.addRoutes(teacher);
+          break;
+        case 3:
+          this.$router.addRoutes(student);
+          break;
+        case 4:
+          this.$router.addRoutes(student);
+          break;
+        case 5:
+          this.$router.addRoutes(student);
           break;
       }
     } else {

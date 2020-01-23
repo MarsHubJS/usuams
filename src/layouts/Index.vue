@@ -37,14 +37,14 @@
             <a-icon type="team" />
             <span>人员管理</span>
           </span>
-          <a-menu-item key="departmentmanagement">
-            <router-link :to="{ path: '/departmentmanagement' }">
-              部门管理
+          <a-menu-item key="usermanagement">
+            <router-link :to="{ path: '/usermanagement' }">
+              用户管理
             </router-link>
           </a-menu-item>
-          <a-menu-item key="departmentrecruitment">
-            <router-link :to="{ path: '/departmentrecruitment' }">
-              部门招新
+          <a-menu-item key="outsidestaff">
+            <router-link :to="{ path: '/outsidestaff' }">
+              会外人员
             </router-link>
           </a-menu-item>
         </a-sub-menu>
@@ -103,7 +103,8 @@
           margin: '16px',
           padding: '24px',
           background: '#fff',
-          minHeight: '280px'
+          height: '100%',
+          overflow: 'auto'
         }"
       >
         <router-view />
@@ -134,7 +135,6 @@ export default {
     logout() {
       this.$router.push("/login");
       sessionStorage.clear();
-      this.$router.go(0);
     }
   }
 };

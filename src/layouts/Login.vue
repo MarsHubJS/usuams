@@ -65,6 +65,8 @@
 
 <script>
 import admin from "@/router/admin";
+import teacher from "@/router/teacher";
+import student from "@/router/student";
 export default {
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "login" });
@@ -90,6 +92,22 @@ export default {
             switch (res.type) {
               case 1:
                 this.$router.addRoutes(admin);
+                this.$router.push("/home");
+                break;
+              case 2:
+                this.$router.addRoutes(teacher);
+                this.$router.push("/home");
+                break;
+              case 3:
+                this.$router.addRoutes(student);
+                this.$router.push("/home");
+                break;
+              case 4:
+                this.$router.addRoutes(student);
+                this.$router.push("/home");
+                break;
+              case 5:
+                this.$router.addRoutes(student);
                 this.$router.push("/home");
                 break;
             }

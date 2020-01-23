@@ -84,15 +84,7 @@
             </span>
           </a-col>
           <a-col :span="7" style="text-align:right">
-            <a-tag v-show="this.$store.state.loginInfo.type == 3" color="green"
-              >主席团</a-tag
-            >
-            <a-tag v-show="this.$store.state.loginInfo.type == 4" color="cyan"
-              >部长团</a-tag
-            >
-            <a-tag v-show="this.$store.state.loginInfo.type == 5" color="blue"
-              >干事</a-tag
-            >
+            <a-tag color="orange">指导老师</a-tag>
             <a-divider type="vertical" />
             <span>{{ this.$store.state.loginInfo.username }}</span>
             <a-divider type="vertical" />
