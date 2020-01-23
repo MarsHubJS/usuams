@@ -88,7 +88,7 @@
             <a-divider type="vertical" />
             <span>{{ this.$store.state.loginInfo.username }}</span>
             <a-divider type="vertical" />
-            <a @click="logout"><a-icon type="poweroff"/></a>
+            <a @click="logout"><a-icon type="poweroff" />退出</a>
           </a-col>
         </a-row>
       </a-layout-header>

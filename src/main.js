@@ -33,7 +33,8 @@ import {
   Checkbox,
   Divider,
   Breadcrumb,
-  Tag
+  Tag,
+  Tree
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -63,6 +64,7 @@ Vue.use(Checkbox);
 Vue.use(Divider);
 Vue.use(Breadcrumb);
 Vue.use(Tag);
+Vue.use(Tree);
 message.config({
   duration: 5
 });
@@ -71,6 +73,7 @@ Vue.prototype.$confirm = Modal.confirm;
 Vue.prototype.$message = message;
 Vue.config.productionTip = false;
 import "ant-design-vue/dist/antd.less";
+import "@/style/base.less";
 
 //moment
 import moment from "moment";
