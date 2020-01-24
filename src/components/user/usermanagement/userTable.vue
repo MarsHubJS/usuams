@@ -102,42 +102,42 @@ const columns = [
 ];
 
 export default {
-  mounted() {
-    this.getData();
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      default: () => {
+        return false;
+      }
+    },
+    pagination: {
+      type: Object,
+      default: () => {
+        return {
+          current: 1, //初始页
+          pageSize: 10, //分页大小
+          total: 0 //数据总数
+        };
+      }
+    }
   },
   data() {
     return {
-      data: [],
-      pagination: {
-        pageSize: 10,
-        current: 1,
-        total: 0,
-        //showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: total => `总共 ${total} 条数据`
-      },
-      loading: false,
       columns
     };
   },
   methods: {
-    getData() {
-      this.loading = true;
-      let params = {
-        pageSize: this.pagination.pageSize,
-        current: this.pagination.current
-      };
-      this.$http.get("user", { params }).then(res => {
-        console.log(res);
-        this.loading = false;
-        this.data = res.data;
-        this.pagination.total = res.total;
-      });
-    },
     handleTableChange(pagination) {
-      console.log(pagination);
-      this.pagination.current = pagination.current;
-      this.getData();
+      this.$emit("change", pagination);
+    },
+    editUser(id) {
+      console.log("编辑");
+      this.$emit("edit", id);
     }
   }
 };

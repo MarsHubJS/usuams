@@ -13,16 +13,16 @@ const Axios = axios.create({
 });
 
 //axios 请求 拦截器
-
 Axios.interceptors.request.use(config => {
-  //如果有token,就给token
-  // let token = localStorage.logininfo
-  //   ? JSON.parse(localStorage.logininfo).additional
-  //   : null;
-  // if (token) {
-  //   // 判断token是否存在
-  //   config.headers.token = token; // 将token设置成请求头
-  // }
+  // 如果有token,就给token
+  let token = sessionStorage.getItem("Authorization")
+    ? sessionStorage.getItem("Authorization")
+    : null;
+
+  if (token) {
+    // 判断token是否存在
+    config.headers.Authorization = `Bearer ${token}`; // 将token设置成请求头
+  }
   return config;
 });
 

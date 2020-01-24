@@ -139,19 +139,15 @@ new Vue({
     let type = sessionStorage.getItem("type");
     if (type !== "") {
       switch (type) {
-        case 1:
+        case "1":
           this.$router.addRoutes(admin);
           break;
-        case 2:
+        case "2":
           this.$router.addRoutes(teacher);
           break;
-        case 3:
-          this.$router.addRoutes(student);
-          break;
-        case 4:
-          this.$router.addRoutes(student);
-          break;
-        case 5:
+        case "3":
+        case "4":
+        case "5":
           this.$router.addRoutes(student);
           break;
       }

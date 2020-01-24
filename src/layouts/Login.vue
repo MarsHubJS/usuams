@@ -84,6 +84,7 @@ export default {
             console.log(res);
             this.$message.success(res.msg);
             sessionStorage.setItem("type", res.type);
+            sessionStorage.setItem("Authorization", res.Authorization);
             this.$store.commit("setLoginInfo", {
               username: values.username,
               uid: res.uid,
