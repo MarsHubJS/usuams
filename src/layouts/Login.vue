@@ -1,7 +1,7 @@
 <template>
-  <a-row class="bg">
-    <a-col :span="18">1</a-col>
-    <a-col :span="6">
+  <a-row class="bg" type="flex" justify="center" align="middle">
+    <a-col :span="10"></a-col>
+    <a-col :span="5">
       <a-form
         id="components-form-demo-normal-login"
         :form="form"
@@ -122,7 +122,9 @@ export default {
 
 <style lang="less">
 .bg {
-  padding: 250px;
+  background-image: url("../assets/login.png");
+  height: 100%;
+  background-size: 100% 100%;
 }
 #components-form-demo-normal-login .login-form {
   max-width: 300px;

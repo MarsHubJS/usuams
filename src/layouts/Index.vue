@@ -135,6 +135,7 @@ export default {
     logout() {
       this.$router.push("/login");
       sessionStorage.clear();
+      this.$router.go(0);
     }
   }
 };

@@ -35,8 +35,8 @@
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
       <div slot="operation" slot-scope="text">
-        <a @click="showUser(text)">查看</a>
-        <a-divider type="vertical"></a-divider>
+        <!-- <a @click="showUser(text)">查看</a>
+        <a-divider type="vertical"></a-divider> -->
         <a @click="editUser(text)">编辑</a>
         <a-divider type="vertical"></a-divider>
         <a @click="deleteUser(text)">删除</a>

@@ -21,7 +21,7 @@
       </a-col>
     </a-row>
     <userEditModal
-      :id="editId"
+      :user="editUser"
       :visiable="editVisiable"
       @handleOk="editHandelOk"
       @handleCancel="editHandelCancel"
@@ -47,7 +47,7 @@ export default {
       selectedKeys: [],
       checkedKeys: [],
       editVisiable: false,
-      editId: NaN,
+      editUser: {},
       pagination: {
         pageSize: 10,
         current: 1,
@@ -89,9 +89,9 @@ export default {
     onSelect(selectedKeys) {
       this.selectedKeys = selectedKeys;
     },
-    showEditModal(id) {
+    showEditModal(user) {
       console.log("显示弹窗");
-      this.editId = id;
+      this.editUser = user;
       this.editVisiable = true;
     },
     editHandelOk() {
