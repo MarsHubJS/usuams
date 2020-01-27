@@ -214,10 +214,9 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
+        this.$emit("handleOk", values);
         this.form.resetFields();
-        this.visible = false;
       });
-      this.$emit("handleOk");
     },
     handleCancel() {
       this.$emit("handleCancel");

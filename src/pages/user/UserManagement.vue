@@ -17,6 +17,7 @@
           :pagination="pagination"
           @change="handleTableChange"
           @edit="showEditModal"
+          @delete="deleteUser"
         ></userTable>
       </a-col>
     </a-row>
@@ -94,13 +95,23 @@ export default {
       this.editUser = user;
       this.editVisiable = true;
     },
-    editHandelOk() {
+    editHandelOk(values) {
       console.log("隐藏弹窗");
       this.editVisiable = false;
+      this.$http.put(`user/${this.editUser.id}`, values).then(res => {
+        console.log(res);
+        this.getData();
+      });
     },
     editHandelCancel() {
       console.log("关闭弹窗");
       this.editVisiable = false;
+    },
+    deleteUser(id) {
+      this.$http.delete(`user/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
     }
   }
 };

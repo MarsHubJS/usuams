@@ -1,7 +1,8 @@
 <template>
   <a-row class="bg" type="flex" justify="center" align="middle">
-    <a-col :span="10"></a-col>
+    <a-col :span="8"></a-col>
     <a-col :span="5">
+      <h1 style="text-align:center">高校学生会事务管理系统</h1>
       <a-form
         id="components-form-demo-normal-login"
         :form="form"

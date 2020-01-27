@@ -145,8 +145,9 @@ export default {
     showDelete() {
       this.deleteVisiable = true;
     },
-    deleteUser() {
+    deleteUser(id) {
       this.deleteVisiable = false;
+      this.$emit("delete", id);
     }
   }
 };
