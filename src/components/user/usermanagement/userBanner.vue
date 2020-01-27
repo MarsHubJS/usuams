@@ -2,7 +2,7 @@
   <div>
     <a-row>
       <a-col :span="2">
-        <a-button type="primary">新增用户</a-button>
+        <a-button type="primary" @click="showAddModal">新增用户</a-button>
       </a-col>
       <a-col :span="2">
         <a-button type="danger">批量删除</a-button>
@@ -16,7 +16,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    showAddModal() {
+      this.$emit("add");
+    }
+  }
+};
 </script>
 
 <style></style>

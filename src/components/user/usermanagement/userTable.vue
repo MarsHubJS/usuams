@@ -6,6 +6,7 @@
       :dataSource="data"
       :loading="loading"
       :pagination="pagination"
+      :rowSelection="rowSelection"
       @change="handleTableChange"
     >
       <div slot="time" slot-scope="text">
@@ -131,7 +132,12 @@ export default {
   data() {
     return {
       columns,
-      deleteVisiable: false
+      deleteVisiable: false,
+      rowSelection: {
+        onChange: selectedRowKeys => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`);
+        }
+      }
     };
   },
   methods: {

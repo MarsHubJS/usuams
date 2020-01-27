@@ -1,6 +1,6 @@
 <template>
   <div>
-    <userBanner></userBanner>
+    <userBanner @add="showAddModal"></userBanner>
     <a-row :gutter="16">
       <a-col :span="5">
         <userTree
@@ -21,6 +21,11 @@
         ></userTable>
       </a-col>
     </a-row>
+    <userAddModal
+      :visiable="addVisiable"
+      @handleOk="addHandelOk"
+      @handleCancel="addHandelCancel"
+    ></userAddModal>
     <userEditModal
       :user="editUser"
       :visiable="editVisiable"
@@ -35,18 +40,21 @@ import userTable from "@/components/user/usermanagement/userTable";
 import userTree from "@/components/user/usermanagement/userTree";
 import userBanner from "@/components/user/usermanagement/userBanner";
 import userEditModal from "@/components/user/usermanagement/userEditModal";
+import userAddModal from "@/components/user/usermanagement/userAddModal";
 export default {
   components: {
     userTable,
     userTree,
     userBanner,
-    userEditModal
+    userEditModal,
+    userAddModal
   },
   data() {
     return {
       data: [],
       selectedKeys: [],
       checkedKeys: [],
+      addVisiable: false,
       editVisiable: false,
       editUser: {},
       pagination: {
@@ -90,10 +98,26 @@ export default {
     onSelect(selectedKeys) {
       this.selectedKeys = selectedKeys;
     },
+    showAddModal() {
+      console.log("显示弹窗");
+      this.addVisiable = true;
+    },
     showEditModal(user) {
       console.log("显示弹窗");
       this.editUser = user;
       this.editVisiable = true;
+    },
+    addHandelOk(values) {
+      console.log("隐藏弹窗");
+      this.addVisiable = false;
+      this.$http.post("user", values).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    addHandelCancel() {
+      console.log("关闭弹窗");
+      this.addVisiable = false;
     },
     editHandelOk(values) {
       console.log("隐藏弹窗");
