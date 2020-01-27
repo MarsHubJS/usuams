@@ -1,23 +1,12 @@
 <template>
   <div>
-    <a-row>
-      <a-col :span="2">
-        <a-button type="primary">新增用户</a-button>
-      </a-col>
-      <a-col :span="2">
-        <a-button type="danger">批量删除</a-button>
-      </a-col>
-      <a-col :span="4">
-        <a-input placeholder="姓名/学号模糊查询"></a-input>
-      </a-col>
-    </a-row>
-    <div style="height:16px"></div>
     <a-table
       :columns="columns"
       :rowKey="record => record.id"
       :dataSource="data"
       :loading="loading"
       :pagination="pagination"
+      :rowSelection="rowSelection"
       @change="handleTableChange"
     >
       <div slot="time" slot-scope="text">
@@ -118,42 +107,43 @@ const columns = [
 ];
 
 export default {
-  mounted() {
-    this.getData();
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      default: () => {
+        return false;
+      }
+    },
+    pagination: {
+      type: Object,
+      default: () => {
+        return {
+          current: 1, //初始页
+          pageSize: 10, //分页大小
+          total: 0 //数据总数
+        };
+      }
+    }
   },
   data() {
     return {
-      data: [],
-      pagination: {
-        pageSize: 10,
-        current: 1,
-        total: 0,
-        //showSizeChanger: true,
-        showQuickJumper: true,
-        showTotal: total => `总共 ${total} 条数据`
-      },
-      loading: false,
-      columns
+      columns,
+      rowSelection: {
+        onChange: selectedRowKeys => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`);
+        }
+      }
     };
   },
   methods: {
-    getData() {
-      this.loading = true;
-      let params = {
-        pageSize: this.pagination.pageSize,
-        current: this.pagination.current
-      };
-      this.$http.get("guest", { params }).then(res => {
-        console.log(res);
-        this.loading = false;
-        this.data = res.data;
-        this.pagination.total = res.total;
-      });
-    },
     handleTableChange(pagination) {
-      console.log(pagination);
-      this.pagination.current = pagination.current;
-      this.getData();
+      this.$emit("change", pagination);
     }
   }
 };
