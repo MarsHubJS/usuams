@@ -47,12 +47,12 @@ const columns = [
   },
   {
     title: "负责人",
-    dataIndex: "leader",
+    dataIndex: "leader_name",
     align: "center"
   },
   {
     title: "审核人",
-    dataIndex: "reviewer",
+    dataIndex: "reviewer_name",
     align: "center"
   },
   {

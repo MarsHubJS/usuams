@@ -1,7 +1,7 @@
 import axios from "axios";
-// import router from "./router";
 import config from "@/config";
 import { notification } from "ant-design-vue";
+import router from "@/router";
 
 const Axios = axios.create({
   baseURL: config.baseurl,
@@ -29,14 +29,6 @@ Axios.interceptors.request.use(config => {
 //axios 响应 拦截器
 Axios.interceptors.response.use(
   res => {
-    // if (res.data.code === "error_unauth") {
-    //   notification.warning({
-    //     message: "登录失效",
-    //     description: "您的登录已经失效,请重新登录!"
-    //   });
-    //   localStorage.clear();
-    //   router.push("/login");
-    // } else if (res.data) {
     if (res.data) {
       return res.data;
     } else {
@@ -48,13 +40,22 @@ Axios.interceptors.response.use(
   },
 
   err => {
-    console.log(err);
-    notification.warning({
-      message: "系统错误",
-      description: `系统错误! ${err}`
-    });
-    // router.push("/500");
-    // 使错误传递到then中!
+    console.log(err.response);
+    if (err.response.status === 401) {
+      notification.warning({
+        message: "登录失效",
+        description: "您的登录已经失效,请重新登录!"
+      });
+      sessionStorage.clear();
+      router.push("/login");
+    } else {
+      notification.warning({
+        message: "系统错误",
+        description: `系统错误! ${err}`
+      });
+      // router.push("/500");
+      // 使错误传递到then中!
+    }
     return Promise.resolve(err);
     // return Promise.reject(err);
   }

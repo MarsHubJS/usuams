@@ -36,7 +36,7 @@ const teacher = [
       },
       {
         path: "/usermanagement",
-        component: () => import("@/pages/user/UserManagement.vue"),
+        component: () => import("@/pages/user/Tea/TeaUserManagement.vue"),
         meta: {
           subname: "人员管理",
           name: "用户管理",
