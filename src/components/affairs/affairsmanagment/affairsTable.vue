@@ -10,6 +10,13 @@
     <div slot="time" slot-scope="text">
       <span>{{ moment(text * 1000).format("YYYY-MM-DD HH:mm:ss") }}</span>
     </div>
+    <div slot="operation">
+      <a>查看</a>
+      <a-divider type="vertical"></a-divider>
+      <a>编辑</a>
+      <a-divider type="vertical"></a-divider>
+      <a>删除</a>
+    </div>
   </a-table>
 </template>
 
@@ -44,6 +51,11 @@ const columns = [
     align: "center"
   },
   {
+    title: "审核人",
+    dataIndex: "reviewer",
+    align: "center"
+  },
+  {
     title: "优先级",
     dataIndex: "level",
     align: "center"
@@ -53,53 +65,53 @@ const columns = [
     dataIndex: "state",
     align: "center"
   },
-  {
-    title: "查看内容",
-    dataIndex: "context",
-    scopedSlots: { customRender: "time" },
-    align: "center"
-  },
+  // {
+  //   title: "查看内容",
+  //   dataIndex: "context",
+  //   align: "center",
+  //   width: "20%"
+  // },
   {
     title: "操作",
     dataIndex: "id",
+    scopedSlots: { customRender: "operation" },
     align: "center"
   }
 ];
 
 export default {
-  mounted() {
-    this.getData();
+  props: {
+    data: {
+      type: Array,
+      default: () => {
+        return [];
+      }
+    },
+    loading: {
+      type: Boolean,
+      default: () => {
+        return false;
+      }
+    },
+    pagination: {
+      type: Object,
+      default: () => {
+        return {
+          current: 1, //初始页
+          pageSize: 10, //分页大小
+          total: 0 //数据总数
+        };
+      }
+    }
   },
   data() {
     return {
-      data: [],
-      pagination: {
-        pageSize: 10,
-        current: 1,
-        total: 0
-      },
-      loading: false,
       columns
     };
   },
   methods: {
-    getData() {
-      this.loading = true;
-      let params = {
-        pageSize: this.pagination.pageSize,
-        current: this.pagination.current
-      };
-      this.$http.get("affair", { params }).then(res => {
-        console.log(res);
-        this.loading = false;
-        this.data = res.data;
-        this.pagination.total = res.total;
-      });
-    },
     handleTableChange(pagination) {
-      console.log(pagination);
-      this.pagination.current = pagination.current;
-      this.getData();
+      this.$emit("change", pagination);
     }
   }
 };

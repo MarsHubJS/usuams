@@ -26,11 +26,6 @@
               活动管理
             </router-link>
           </a-menu-item>
-          <a-menu-item key="meetingmanagement">
-            <router-link :to="{ path: '/meetingmanagement' }">
-              例会管理
-            </router-link>
-          </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="user">
           <span slot="title">
@@ -42,30 +37,7 @@
               用户管理
             </router-link>
           </a-menu-item>
-          <a-menu-item key="outsidestaff">
-            <router-link :to="{ path: '/outsidestaff' }">
-              会外人员
-            </router-link>
-          </a-menu-item>
         </a-sub-menu>
-        <!-- <a-sub-menu key="sub3">
-          <span slot="title">
-            <a-icon type="dollar" />
-            <span>财产管理</span>
-          </span>
-          <a-menu-item key="9">办公室</a-menu-item>
-          <a-menu-item key="10">资产</a-menu-item>
-        </a-sub-menu> -->
-        <!-- <a-sub-menu key="sub4">
-          <span slot="title">
-            <a-icon type="sound" />
-            <span>论坛/个性化</span>
-          </span>
-          <a-menu-item key="13">Option 5</a-menu-item>
-          <a-menu-item key="14">Option 6</a-menu-item>
-          <a-menu-item key="15">Option 7</a-menu-item>
-          <a-menu-item key="16">Option 8</a-menu-item>
-        </a-sub-menu> -->
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -135,7 +107,6 @@ export default {
     logout() {
       this.$router.push("/login");
       sessionStorage.clear();
-      this.$router.go(0);
     }
   }
 };
