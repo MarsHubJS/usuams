@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import userTable from "@/components/user/usermanagement/tea/teaUserTable";
+import userTable from "@/components/user/usermanagement/userTable";
 import userTree from "@/components/user/usermanagement/tea/teaUserTree";
 import userBanner from "@/components/user/usermanagement/userBanner";
 import userEditModal from "@/components/user/usermanagement/userEditModal";

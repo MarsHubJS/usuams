@@ -1,7 +1,7 @@
-const student = [
+const presidium = [
   {
     path: "/home",
-    component: () => import("@/layouts/Student.vue"),
+    component: () => import("@/layouts/Presidium.vue"),
     children: [
       {
         path: "/home",
@@ -60,4 +60,4 @@ const student = [
   }
 ];
 
-export default student;
+export default presidium;

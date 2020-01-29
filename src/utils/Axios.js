@@ -14,14 +14,11 @@ const Axios = axios.create({
 
 //axios 请求 拦截器
 Axios.interceptors.request.use(config => {
-  // 如果有token,就给token
   let token = sessionStorage.getItem("Authorization")
     ? sessionStorage.getItem("Authorization")
     : null;
-
   if (token) {
-    // 判断token是否存在
-    config.headers.Authorization = `Bearer ${token}`; // 将token设置成请求头
+    config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
@@ -34,7 +31,7 @@ Axios.interceptors.response.use(
     } else {
       notification.warning({
         message: "系统错误",
-        description: `没有返回内容! `
+        description: `未正常返回内容!`
       });
     }
   },
@@ -50,12 +47,12 @@ Axios.interceptors.response.use(
       router.push("/login");
     } else {
       notification.warning({
-        message: "系统错误",
-        description: `系统错误! ${err}`
+        message: "服务器错误",
+        description: `服务器错误! ${err}`
       });
       // router.push("/500");
-      // 使错误传递到then中!
     }
+    // 使错误传递到then中!
     return Promise.resolve(err);
     // return Promise.reject(err);
   }

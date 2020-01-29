@@ -128,7 +128,9 @@ NProgress.configure({
 
 import admin from "@/router/admin";
 import teacher from "@/router/teacher";
-import student from "@/router/student";
+import presidium from "@/router/presidium";
+import minister from "@/router/minister";
+import secretary from "@/router/secretary";
 
 // 实例化Vue
 new Vue({
@@ -138,17 +140,26 @@ new Vue({
   created() {
     let type = sessionStorage.getItem("type");
     if (type !== "") {
-      switch (type) {
-        case "1":
+      switch (parseInt(type)) {
+        case 1:
           this.$router.addRoutes(admin);
+          this.$router.push("/home");
           break;
-        case "2":
+        case 2:
           this.$router.addRoutes(teacher);
+          this.$router.push("/home");
           break;
-        case "3":
-        case "4":
-        case "5":
-          this.$router.addRoutes(student);
+        case 3:
+          this.$router.addRoutes(presidium);
+          this.$router.push("/home");
+          break;
+        case 4:
+          this.$router.addRoutes(minister);
+          this.$router.push("/home");
+          break;
+        case 5:
+          this.$router.addRoutes(secretary);
+          this.$router.push("/home");
           break;
       }
     } else {
