@@ -36,7 +36,7 @@ const presidium = [
       },
       {
         path: "/usermanagement",
-        component: () => import("@/pages/user/UserManagement.vue"),
+        component: () => import("@/pages/user/Pre/PreUserManagement.vue"),
         meta: {
           subname: "人员管理",
           name: "用户管理",
