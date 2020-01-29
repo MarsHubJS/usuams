@@ -83,7 +83,7 @@ export default {
         if (!err) {
           let data = {
             username: values.username,
-            password: values.password
+            password: this.$md5(values.password)
           };
           this.$http.post("login", data).then(res => {
             console.log(res);

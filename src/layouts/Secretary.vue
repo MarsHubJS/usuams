@@ -117,8 +117,9 @@ export default {
       this.openKeys = [];
     },
     logout() {
-      this.$router.push("/login");
-      sessionStorage.clear();
+      this.$store.dispatch("logout").then(() => {
+        location.reload(); // 为了重新实例化vue-router对象 避免bug
+      });
     }
   }
 };

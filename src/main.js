@@ -75,6 +75,10 @@ Vue.config.productionTip = false;
 import "ant-design-vue/dist/antd.less";
 import "@/style/base.less";
 
+//md5
+import md5 from "js-md5";
+Vue.prototype.$md5 = md5;
+
 //moment
 import moment from "moment";
 import "moment/locale/zh-cn";
