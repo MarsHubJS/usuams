@@ -9,14 +9,16 @@ export default new Vuex.Store({
     loginInfo: {
       username: "",
       uid: "",
-      type: ""
+      type: "",
+      depa: ""
     }
   },
   mutations: {
-    setLoginInfo(state, { username, uid, type }) {
+    setLoginInfo(state, { username, uid, type, depa }) {
       state.loginInfo.username = username;
       state.loginInfo.uid = uid;
       state.loginInfo.type = type;
+      state.loginInfo.depa = depa;
     }
   },
   actions: {},

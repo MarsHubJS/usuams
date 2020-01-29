@@ -91,7 +91,8 @@ export default {
             this.$store.commit("setLoginInfo", {
               username: values.username,
               uid: res.uid,
-              type: res.type
+              type: res.type,
+              depa: res.depa
             });
             switch (res.type) {
               case 1:
