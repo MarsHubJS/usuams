@@ -18,6 +18,13 @@ const router = new VueRouter({
       meta: {
         title: "登录"
       }
+    },
+    {
+      path: "/sign",
+      component: () => import("@/layouts/Sign.vue"),
+      meta: {
+        title: "加入学生会"
+      }
     }
   ]
 });

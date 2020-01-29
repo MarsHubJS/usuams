@@ -52,7 +52,8 @@ export default {
       let params = {
         pageSize: this.pagination.pageSize,
         current: this.pagination.current,
-        state: this.checkedKeys
+        state: this.checkedKeys,
+        uid: this.$store.state.loginInfo.uid
       };
       this.$http.get("affair", { params }).then(res => {
         console.log(res);

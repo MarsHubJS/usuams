@@ -14,7 +14,7 @@ const teacher = [
       },
       {
         path: "/affairsmanagement",
-        component: () => import("@/pages/affairs/Tea/TeaAffairsManagement.vue"),
+        component: () => import("@/pages/affairs/AffairsManagement.vue"),
         meta: {
           subname: "事务管理",
           name: "活动管理",

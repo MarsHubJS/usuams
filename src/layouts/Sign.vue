@@ -55,10 +55,8 @@
             登录
           </a-button>
           或
-          <a>
-            <router-link :to="{ path: '/sign' }">
-              加入学生会！
-            </router-link>
+          <a href="">
+            加入学生会！
           </a>
         </a-form-item>
       </a-form>

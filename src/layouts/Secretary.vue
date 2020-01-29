@@ -32,22 +32,6 @@
             </router-link>
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="user">
-          <span slot="title">
-            <a-icon type="team" />
-            <span>人员管理</span>
-          </span>
-          <a-menu-item key="usermanagement">
-            <router-link :to="{ path: '/usermanagement' }">
-              用户管理
-            </router-link>
-          </a-menu-item>
-          <a-menu-item key="outsidestaff">
-            <router-link :to="{ path: '/outsidestaff' }">
-              会外人员
-            </router-link>
-          </a-menu-item>
-        </a-sub-menu>
         <!-- <a-sub-menu key="sub3">
           <span slot="title">
             <a-icon type="dollar" />
