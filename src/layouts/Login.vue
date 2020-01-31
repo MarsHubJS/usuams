@@ -48,9 +48,9 @@
           >
             记住我
           </a-checkbox>
-          <a class="login-form-forgot" href="">
+          <!-- <a class="login-form-forgot" href="">
             忘记密码
-          </a>
+          </a> -->
           <a-button type="primary" html-type="submit" class="login-form-button">
             登录
           </a-button>
