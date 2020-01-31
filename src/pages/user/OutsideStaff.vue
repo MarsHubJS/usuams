@@ -50,7 +50,8 @@ export default {
       this.loading = true;
       let params = {
         pageSize: this.pagination.pageSize,
-        current: this.pagination.current
+        current: this.pagination.current,
+        depa: this.$store.state.loginInfo.depa
       };
       this.$http.get("guest", { params }).then(res => {
         console.log(res);
