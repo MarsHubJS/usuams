@@ -48,6 +48,17 @@
             </router-link>
           </a-menu-item>
         </a-sub-menu>
+        <a-sub-menu key="department">
+          <span slot="title">
+            <a-icon type="deployment-unit" />
+            <span>组织管理</span>
+          </span>
+          <a-menu-item key="departmentmanagement">
+            <router-link :to="{ path: '/departmentmanagement' }">
+              部门管理
+            </router-link>
+          </a-menu-item>
+        </a-sub-menu>
         <!-- <a-sub-menu key="sub3">
           <span slot="title">
             <a-icon type="dollar" />

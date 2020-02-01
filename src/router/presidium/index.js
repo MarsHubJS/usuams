@@ -55,6 +55,17 @@ const presidium = [
           key: "outsidestaff",
           title: "会外人员"
         }
+      },
+      {
+        path: "/departmentmanagement",
+        component: () => import("@/pages/department/DepartmentManagement.vue"),
+        meta: {
+          subname: "组织管理",
+          name: "部门管理",
+          subkey: "department",
+          key: "departmentmanagement",
+          title: "部门管理"
+        }
       }
     ]
   }
