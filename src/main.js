@@ -36,8 +36,7 @@ import {
   Tag,
   Tree,
   Card,
-  Statistic,
-  Timeline
+  Statistic
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -70,7 +69,6 @@ Vue.use(Tag);
 Vue.use(Tree);
 Vue.use(Card);
 Vue.use(Statistic);
-Vue.use(Timeline);
 message.config({
   duration: 5
 });

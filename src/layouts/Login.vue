@@ -129,6 +129,7 @@ export default {
 <style lang="less">
 .bg {
   background-image: url("../assets/login.png");
+  background-attachment: fixed;
   height: 100%;
   background-size: 100% 100%;
 }
