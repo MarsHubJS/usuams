@@ -34,7 +34,10 @@ import {
   Divider,
   Breadcrumb,
   Tag,
-  Tree
+  Tree,
+  Card,
+  Statistic,
+  Timeline
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -65,6 +68,9 @@ Vue.use(Divider);
 Vue.use(Breadcrumb);
 Vue.use(Tag);
 Vue.use(Tree);
+Vue.use(Card);
+Vue.use(Statistic);
+Vue.use(Timeline);
 message.config({
   duration: 5
 });

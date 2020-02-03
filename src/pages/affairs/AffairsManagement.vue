@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import affairsTable from "@/components/affairs/affairsmanagment/affairsTable";
-import affairsTree from "@/components/affairs/affairsmanagment/affairsTree";
+import affairsTable from "@/components/affairs/affairsmanagement/affairsTable";
+import affairsTree from "@/components/affairs/affairsmanagement/affairsTree";
 export default {
   components: {
     affairsTable,
