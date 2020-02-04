@@ -102,11 +102,6 @@ export default {
       console.log("显示弹窗");
       this.addVisiable = true;
     },
-    showEditModal(user) {
-      console.log("显示弹窗");
-      this.editUser = user;
-      this.editVisiable = true;
-    },
     addHandelOk(values) {
       console.log("隐藏弹窗");
       this.addVisiable = false;
@@ -118,6 +113,11 @@ export default {
     addHandelCancel() {
       console.log("关闭弹窗");
       this.addVisiable = false;
+    },
+    showEditModal(user) {
+      console.log("显示弹窗");
+      this.editUser = user;
+      this.editVisiable = true;
     },
     editHandelOk(values) {
       console.log("隐藏弹窗");

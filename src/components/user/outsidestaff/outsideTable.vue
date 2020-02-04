@@ -23,12 +23,14 @@
         <a-tag v-show="text == 5" color="blue">干事</a-tag>
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
-      <div slot="operation" slot-scope="text">
+      <div slot="operation" slot-scope="text, record">
         <!-- <a @click="showUser(text)">查看</a>
         <a-divider type="vertical"></a-divider> -->
-        <a @click="editUser(text)">编辑</a>
+        <a @click="editGuest(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
-        <a @click="deleteUser(text)">删除</a>
+        <a-popconfirm title="确定要删除?" @confirm="deleteGuest(text)">
+          <a @click="showDelete()">删除</a>
+        </a-popconfirm>
       </div>
     </a-table>
   </div>
@@ -134,6 +136,7 @@ export default {
   data() {
     return {
       columns,
+      deleteVisiable: false,
       rowSelection: {
         onChange: selectedRowKeys => {
           console.log(`selectedRowKeys: ${selectedRowKeys}`);
@@ -144,6 +147,17 @@ export default {
   methods: {
     handleTableChange(pagination) {
       this.$emit("change", pagination);
+    },
+    editGuest(data) {
+      console.log("编辑");
+      this.$emit("edit", data);
+    },
+    showDelete() {
+      this.deleteVisiable = true;
+    },
+    deleteGuest(id) {
+      this.deleteVisiable = false;
+      this.$emit("delete", id);
     }
   }
 };

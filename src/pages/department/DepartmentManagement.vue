@@ -1,22 +1,39 @@
 <template>
   <div>
-    <depaBanner></depaBanner>
+    <depaBanner @add="showAddModal"></depaBanner>
     <depaTable
       :data="data"
       :loading="loading"
       :pagination="pagination"
       @change="handleTableChange"
+      @delete="deleteDepa"
+      @edit="showEditModal"
     ></depaTable>
+    <depaAddModal
+      :visiable="addVisiable"
+      @handleOk="addHandelOk"
+      @handleCancel="addHandelCancel"
+    ></depaAddModal>
+    <depaEditModal
+      :data="editData"
+      :visiable="editVisiable"
+      @handleOk="editHandelOk"
+      @handleCancel="editHandelCancel"
+    ></depaEditModal>
   </div>
 </template>
 
 <script>
 import depaTable from "@/components/department/departmentmanagement/depaTable";
 import depaBanner from "@/components/department/departmentmanagement/depaBanner";
+import depaAddModal from "@/components/department/departmentmanagement/depaAddModal";
+import depaEditModal from "@/components/department/departmentmanagement/depaEditModal";
 export default {
   components: {
     depaTable,
-    depaBanner
+    depaBanner,
+    depaAddModal,
+    depaEditModal
   },
   data() {
     return {
@@ -29,8 +46,10 @@ export default {
         showQuickJumper: true,
         showTotal: total => `总共 ${total} 条数据`
       },
-      loading: false
-      // addVisiable: false
+      loading: false,
+      addVisiable: false,
+      editVisiable: false,
+      editData: {}
     };
   },
   mounted() {
@@ -54,23 +73,45 @@ export default {
       console.log(pagination);
       this.pagination.current = pagination.current;
       this.getData();
+    },
+    showAddModal() {
+      console.log("显示弹窗");
+      this.addVisiable = true;
+    },
+    addHandelOk(values) {
+      console.log("隐藏弹窗");
+      this.addVisiable = false;
+      this.$http.post("department", values).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    addHandelCancel() {
+      console.log("关闭弹窗");
+      this.addVisiable = false;
+    },
+    editHandelOk(values) {
+      console.log("隐藏弹窗");
+      this.editVisiable = false;
+      this.$http.put(`department/${this.editData.id}`, values).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    editHandelCancel() {
+      console.log("关闭弹窗");
+      this.editVisiable = false;
+    },
+    deleteDepa(id) {
+      this.$http.delete(`department/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    showEditModal(data) {
+      this.editData = data;
+      this.editVisiable = true;
     }
-    // showAddModal() {
-    //   console.log("显示弹窗");
-    //   this.addVisiable = true;
-    // },
-    // addHandelOk(values) {
-    //   console.log("隐藏弹窗");
-    //   this.addVisiable = false;
-    //   this.$http.post("guest", values).then(res => {
-    //     console.log(res);
-    //     this.getData();
-    //   });
-    // },
-    // addHandelCancel() {
-    //   console.log("关闭弹窗");
-    //   this.addVisiable = false;
-    // }
   }
 };
 </script>

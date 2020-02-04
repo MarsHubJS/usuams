@@ -9,12 +9,14 @@
       :rowSelection="rowSelection"
       @change="handleTableChange"
     >
-      <div slot="operation" slot-scope="text">
-        <a @click="showDepa(text)">查看</a>
+      <div slot="operation" slot-scope="text, record">
+        <!-- <a @click="showDepa(text)">查看</a>
+        <a-divider type="vertical"></a-divider> -->
+        <a @click="editDepa(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
-        <a @click="editDepa(text)">编辑</a>
-        <a-divider type="vertical"></a-divider>
-        <a @click="deleteDepa(text)">删除</a>
+        <a-popconfirm title="确定要删除?" @confirm="deleteDepa(text)">
+          <a @click="showDelete()">删除</a>
+        </a-popconfirm>
       </div>
     </a-table>
   </div>
@@ -68,6 +70,7 @@ export default {
   data() {
     return {
       columns,
+      deleteVisiable: false,
       rowSelection: {
         onChange: selectedRowKeys => {
           console.log(`selectedRowKeys: ${selectedRowKeys}`);
@@ -78,6 +81,15 @@ export default {
   methods: {
     handleTableChange(pagination) {
       this.$emit("change", pagination);
+    },
+    deleteDepa(id) {
+      this.$emit("delete", id);
+    },
+    editDepa(data) {
+      this.$emit("edit", data);
+    },
+    showDelete() {
+      this.deleteVisiable = true;
     }
   }
 };

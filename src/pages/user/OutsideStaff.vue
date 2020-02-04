@@ -7,12 +7,20 @@
         :loading="loading"
         :pagination="pagination"
         @change="handleTableChange"
+        @edit="showEditModal"
+        @delete="deleteGuest"
       ></outsideTable>
       <outsideAddModal
         :visiable="addVisiable"
         @handleOk="addHandelOk"
         @handleCancel="addHandelCancel"
       ></outsideAddModal>
+      <outsideEditModal
+        :data="editData"
+        :visiable="editVisiable"
+        @handleOk="editHandelOk"
+        @handleCancel="editHandelCancel"
+      ></outsideEditModal>
     </a-col>
   </a-row>
 </template>
@@ -21,15 +29,22 @@
 import outsideTable from "@/components/user/outsidestaff/outsideTable";
 import outsideBanner from "@/components/user/outsidestaff/outsideBanner";
 import outsideAddModal from "@/components/user/outsidestaff/outsideAddModal";
+import outsideEditModal from "@/components/user/outsidestaff/outsideEditModal";
 export default {
   components: {
     outsideTable,
     outsideBanner,
-    outsideAddModal
+    outsideAddModal,
+    outsideEditModal
   },
   data() {
     return {
       data: [],
+      selectedKeys: [],
+      checkedKeys: [],
+      addVisiable: false,
+      editVisiable: false,
+      editData: {},
       pagination: {
         pageSize: 10,
         current: 1,
@@ -38,8 +53,7 @@ export default {
         showQuickJumper: true,
         showTotal: total => `总共 ${total} 条数据`
       },
-      loading: false,
-      addVisiable: false
+      loading: false
     };
   },
   mounted() {
@@ -65,6 +79,13 @@ export default {
       this.pagination.current = pagination.current;
       this.getData();
     },
+    onCheck(checkedKeys) {
+      this.checkedKeys = checkedKeys;
+      this.getData();
+    },
+    onSelect(selectedKeys) {
+      this.selectedKeys = selectedKeys;
+    },
     showAddModal() {
       console.log("显示弹窗");
       this.addVisiable = true;
@@ -80,6 +101,29 @@ export default {
     addHandelCancel() {
       console.log("关闭弹窗");
       this.addVisiable = false;
+    },
+    showEditModal(data) {
+      console.log("显示弹窗");
+      this.editData = data;
+      this.editVisiable = true;
+    },
+    editHandelOk(values) {
+      console.log("隐藏弹窗");
+      this.editVisiable = false;
+      this.$http.put(`guest/${this.editData.id}`, values).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    editHandelCancel() {
+      console.log("关闭弹窗");
+      this.editVisiable = false;
+    },
+    deleteGuest(id) {
+      this.$http.delete(`guest/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
     }
   }
 };
