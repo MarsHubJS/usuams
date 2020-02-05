@@ -36,7 +36,8 @@ import {
   Tag,
   Tree,
   Card,
-  Statistic
+  Statistic,
+  Drawer
 } from "ant-design-vue";
 
 Vue.use(Row);
@@ -69,6 +70,7 @@ Vue.use(Tag);
 Vue.use(Tree);
 Vue.use(Card);
 Vue.use(Statistic);
+Vue.use(Drawer);
 message.config({
   duration: 5
 });

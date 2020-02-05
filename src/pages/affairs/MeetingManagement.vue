@@ -1,21 +1,26 @@
 <template>
-  <a-row :gutter="16">
-    <a-col :span="24">
-      <meetingTable
-        :data="data"
-        :loading="loading"
-        :pagination="pagination"
-        @change="handleTableChange"
-      ></meetingTable>
-    </a-col>
-  </a-row>
+  <div>
+    <meetingBanner></meetingBanner>
+    <a-row :gutter="16">
+      <a-col :span="24">
+        <meetingTable
+          :data="data"
+          :loading="loading"
+          :pagination="pagination"
+          @change="handleTableChange"
+        ></meetingTable>
+      </a-col>
+    </a-row>
+  </div>
 </template>
 
 <script>
 import meetingTable from "@/components/affairs/meetingmanagement/meetingTable";
+import meetingBanner from "@/components/affairs/meetingmanagement/meetingBanner";
 export default {
   components: {
-    meetingTable
+    meetingTable,
+    meetingBanner
   },
   data() {
     return {

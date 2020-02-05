@@ -11,7 +11,10 @@ export default {
   name: "editor",
   mounted() {
     var editor = new E("#editorMenu", "#editor");
-    editor.create();
+    editor.customConfig.onchange = html => {
+      console.log(html);
+    };
+    editor.create(); // 创建富文本实例
   }
 };
 </script>

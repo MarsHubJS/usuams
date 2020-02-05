@@ -1,31 +1,36 @@
 <template>
-  <a-row :gutter="16">
-    <a-col :span="5">
-      <affairsTree
-        :selectedKeys="selectedKeys"
-        :checkedKeys="checkedKeys"
-        @check="onCheck"
-        @select="onSelect"
-      ></affairsTree>
-    </a-col>
-    <a-col :span="19">
-      <affairsTable
-        :data="data"
-        :loading="loading"
-        :pagination="pagination"
-        @change="handleTableChange"
-      ></affairsTable>
-    </a-col>
-  </a-row>
+  <div>
+    <affairsBanner></affairsBanner>
+    <a-row :gutter="16">
+      <a-col :span="5">
+        <affairsTree
+          :selectedKeys="selectedKeys"
+          :checkedKeys="checkedKeys"
+          @check="onCheck"
+          @select="onSelect"
+        ></affairsTree>
+      </a-col>
+      <a-col :span="19">
+        <affairsTable
+          :data="data"
+          :loading="loading"
+          :pagination="pagination"
+          @change="handleTableChange"
+        ></affairsTable>
+      </a-col>
+    </a-row>
+  </div>
 </template>
 
 <script>
 import affairsTable from "@/components/affairs/affairsmanagement/affairsTable";
 import affairsTree from "@/components/affairs/affairsmanagement/affairsTree";
+import affairsBanner from "@/components/affairs/affairsmanagement/affairsBanner";
 export default {
   components: {
     affairsTable,
-    affairsTree
+    affairsTree,
+    affairsBanner
   },
   data() {
     return {
