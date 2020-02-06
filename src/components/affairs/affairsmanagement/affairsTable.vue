@@ -5,17 +5,20 @@
     :dataSource="data"
     :loading="loading"
     :pagination="pagination"
+    :rowSelection="rowSelection"
     @change="handleTableChange"
   >
     <div slot="time" slot-scope="text">
       <span>{{ moment(text * 1000).format("YYYY-MM-DD HH:mm:ss") }}</span>
     </div>
-    <div slot="operation">
+    <div slot="operation" slot-scope="text, record">
       <a>查看</a>
       <a-divider type="vertical"></a-divider>
-      <a>编辑</a>
+      <a @click="editAffairs(record)">编辑</a>
       <a-divider type="vertical"></a-divider>
-      <a>删除</a>
+      <a-popconfirm title="确定要删除?" @confirm="deleteAffairs(text)">
+        <a @click="showDelete(text)">删除</a>
+      </a-popconfirm>
     </div>
   </a-table>
 </template>
@@ -106,12 +109,29 @@ export default {
   },
   data() {
     return {
-      columns
+      columns,
+      deleteVisiable: false,
+      rowSelection: {
+        onChange: selectedRowKeys => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`);
+        }
+      }
     };
   },
   methods: {
     handleTableChange(pagination) {
       this.$emit("change", pagination);
+    },
+    editAffairs(data) {
+      console.log("编辑");
+      this.$emit("edit", data);
+    },
+    showDelete() {
+      this.deleteVisiable = true;
+    },
+    deleteAffairs(id) {
+      this.deleteVisiable = false;
+      this.$emit("delete", id);
     }
   }
 };

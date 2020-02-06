@@ -1,6 +1,6 @@
 <template>
   <div>
-    <affairsBanner></affairsBanner>
+    <affairsBanner @add="showAddModal"></affairsBanner>
     <a-row :gutter="16">
       <a-col :span="5">
         <affairsTree
@@ -16,7 +16,20 @@
           :loading="loading"
           :pagination="pagination"
           @change="handleTableChange"
+          @edit="showEditModal"
+          @delete="deleteAffairs"
         ></affairsTable>
+        <affairsAddModal
+          :visiable="addVisiable"
+          @handleOk="addHandelOk"
+          @handleCancel="addHandelCancel"
+        ></affairsAddModal>
+        <affairsEditModal
+          :data="editData"
+          :visiable="editVisiable"
+          @handleOk="editHandelOk"
+          @handleCancel="editHandelCancel"
+        ></affairsEditModal>
       </a-col>
     </a-row>
   </div>
@@ -26,17 +39,24 @@
 import affairsTable from "@/components/affairs/affairsmanagement/affairsTable";
 import affairsTree from "@/components/affairs/affairsmanagement/affairsTree";
 import affairsBanner from "@/components/affairs/affairsmanagement/affairsBanner";
+import affairsAddModal from "@/components/affairs/affairsmanagement/affairsAddModal";
+import affairsEditModal from "@/components/affairs/affairsmanagement/affairsEditModal";
 export default {
   components: {
     affairsTable,
     affairsTree,
-    affairsBanner
+    affairsBanner,
+    affairsAddModal,
+    affairsEditModal
   },
   data() {
     return {
       data: [],
       selectedKeys: [],
       checkedKeys: [],
+      addVisiable: false,
+      editVisiable: false,
+      editData: {},
       pagination: {
         pageSize: 10,
         current: 1,
@@ -78,6 +98,45 @@ export default {
     },
     onSelect(selectedKeys) {
       this.selectedKeys = selectedKeys;
+    },
+    showAddModal() {
+      console.log("显示弹窗");
+      this.addVisiable = true;
+    },
+    addHandelOk() {
+      console.log("隐藏弹窗");
+      this.addVisiable = false;
+      // this.$http.post("affair", values).then(res => {
+      //   console.log(res);
+      //   this.getData();
+      // });
+    },
+    addHandelCancel() {
+      console.log("关闭弹窗");
+      this.addVisiable = false;
+    },
+    showEditModal(data) {
+      console.log("显示弹窗");
+      this.editData = data;
+      this.editVisiable = true;
+    },
+    editHandelOk() {
+      console.log("隐藏弹窗");
+      this.editVisiable = false;
+      // this.$http.put(`affair/${this.editData.id}`, values).then(res => {
+      //   console.log(res);
+      //   this.getData();
+      // });
+    },
+    editHandelCancel() {
+      console.log("关闭弹窗");
+      this.editVisiable = false;
+    },
+    deleteAffairs() {
+      // this.$http.delete(`affair/${id}`).then(res => {
+      //   console.log(res);
+      //   this.getData();
+      // });
     }
   }
 };
