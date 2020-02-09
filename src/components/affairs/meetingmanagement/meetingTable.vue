@@ -13,9 +13,11 @@
     <div slot="operation">
       <a>查看</a>
       <a-divider type="vertical"></a-divider>
-      <a>编辑</a>
+      <a @click="editMeeting(record)">编辑</a>
       <a-divider type="vertical"></a-divider>
-      <a>删除</a>
+      <a-popconfirm title="确定要删除?" @confirm="deleteMeeting(text)">
+        <a @click="showDelete(text)">删除</a>
+      </a-popconfirm>
     </div>
   </a-table>
 </template>
@@ -101,6 +103,17 @@ export default {
   methods: {
     handleTableChange(pagination) {
       this.$emit("change", pagination);
+    },
+    editMeeting(data) {
+      console.log("编辑");
+      this.$emit("edit", data);
+    },
+    showDelete() {
+      this.deleteVisiable = true;
+    },
+    deleteMeeting(id) {
+      this.deleteVisiable = false;
+      this.$emit("delete", id);
     }
   }
 };
