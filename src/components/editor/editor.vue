@@ -8,13 +8,22 @@
 <script>
 import E from "wangeditor";
 export default {
-  name: "editor",
+  data() {
+    return {
+      editorContent: ""
+    };
+  },
+  methods: {
+    getContent: function() {
+      alert(this.editorContent);
+    }
+  },
   mounted() {
     var editor = new E("#editorMenu", "#editor");
     editor.customConfig.onchange = html => {
-      console.log(html);
+      this.editorContent = html;
     };
-    editor.create(); // 创建富文本实例
+    editor.create();
   }
 };
 </script>
