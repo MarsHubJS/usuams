@@ -7,7 +7,7 @@ const path = require("path");
 const options = {
   antDir: path.join(__dirname, "./node_modules/ant-design-vue"), //antd包位置
   stylesDir: path.join(__dirname, "./src/style/theme"), //主题文件所在文件夹
-  varFile: path.join(__dirname, "./src/style/theme/red.less"), // 自定义默认的主题色
+  varFile: path.join(__dirname, "./src/style/theme/variables.less"), // 自定义默认的主题色
   mainLessFile: path.join(__dirname, "./src/style/theme/index.less"), // 项目中其他自定义的样式（如果不需要动态修改其他样式，该文件可以为空）
   outputFilePath: path.join(__dirname, "./public/color.less"), //提取的less文件输出到什么地方
   themeVariables: ["@primary-color"], //要改变的主题变量

@@ -2,41 +2,98 @@
   <div>
     <div
       class="setting"
-      @click="showDrawer"
-      :style="{ position: 'fixed', top: '250', right: '0' }"
+      @click="drawerhandel"
+      :class="visible ? 'open' : 'close'"
     >
-      <a-icon type="setting"></a-icon>
+      <a-icon v-if="visible" type="close"></a-icon>
+      <a-icon v-else type="setting"></a-icon>
     </div>
     <a-drawer
       title="设置"
       placement="right"
       @close="onClose"
       :visible="visible"
+      :closable="false"
     >
-      <div class="hello">
-        <h1>{{ msg }}</h1>
-        <a-button type="primary" @click="changeTheme('#992777')">默认</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#F5222D')">薄暮</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#FA541C')">火山</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#FAAD14')">日暮</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#13C2C2')">明青</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#52C41A')"
-          >极光绿</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#1890FF')"
-          >拂晓蓝</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#2F54EB')"
-          >极客蓝</a-button
-        ><br /><br />
-        <a-button type="primary" @click="changeTheme('#722ED1')">酱紫</a-button
-        ><br /><br />
-      </div>
+      <h4>主题选择</h4>
+      <a-row>
+        <a-col :span="4">
+          <div
+            style="background-color:#1890ff"
+            class="color"
+            @click="changeTheme('#1890ff')"
+          >
+            <!-- 默认 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#F5222D"
+            class="color"
+            @click="changeTheme('#F5222D')"
+          >
+            <!-- 薄暮 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#FA541C"
+            class="color"
+            @click="changeTheme('#FA541C')"
+          >
+            <!-- 火山 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#FAAD14"
+            class="color"
+            @click="changeTheme('#FAAD14')"
+          >
+            <!-- 日暮 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#13C2C2"
+            class="color"
+            @click="changeTheme('#13C2C2')"
+          >
+            <!-- 明青 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#52C41A"
+            class="color"
+            @click="changeTheme('#52C41A')"
+          >
+            <!-- 极光绿 -->
+          </div>
+        </a-col>
+      </a-row>
+      <div style="height:20px"></div>
+      <a-row>
+        <a-col :span="4">
+          <div
+            style="background-color:#2F54EB"
+            class="color"
+            @click="changeTheme('#2F54EB')"
+          >
+            <!-- 极客蓝 -->
+          </div>
+        </a-col>
+        <a-col :span="4">
+          <div
+            style="background-color:#722ED1"
+            class="color"
+            @click="changeTheme('#722ED1')"
+          >
+            <!-- 酱紫 -->
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider></a-divider>
     </a-drawer>
   </div>
 </template>
@@ -49,6 +106,9 @@ export default {
     };
   },
   methods: {
+    drawerhandel() {
+      this.visible ? this.onClose() : this.showDrawer();
+    },
     showDrawer() {
       this.visible = true;
     },
@@ -63,3 +123,24 @@ export default {
   }
 };
 </script>
+
+<style lang="less" scoped>
+.open {
+  position: fixed;
+  top: 250px;
+  right: 256px;
+  z-index: 1001;
+  transition: right 0.3s cubic-bezier(0.9, 0, 0.3, 0.7);
+}
+.close {
+  position: fixed;
+  top: 250px;
+  right: 0;
+  transition: right 0.3s cubic-bezier(0.9, 0, 0.3, 0.7);
+}
+.color {
+  border: solid 1px gray;
+  height: 20px;
+  width: 80%;
+}
+</style>
