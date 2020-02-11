@@ -31,22 +31,12 @@
             </a-card>
           </a-col>
         </a-row>
-        <div style="padding:50px">
-          <Editor></Editor>
-        </div>
       </a-col>
       <a-col :span="6"></a-col>
     </a-row>
   </div>
 </template>
 
-<script>
-import Editor from "@/components/editor/editor";
-export default {
-  components: {
-    Editor
-  }
-};
-</script>
+<script></script>
 
 <style></style>

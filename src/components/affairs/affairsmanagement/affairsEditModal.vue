@@ -9,8 +9,8 @@
     <a-row type="flex" justify="center">
       <a-col :span="24">
         <a-form :form="form">
-          <a-row>
-            <a-col :span="12">
+          <a-row :gutter="16">
+            <a-col :span="6">
               <a-form-item v-bind="formItemLayout" label="事务名称">
                 <a-input
                   v-decorator="[
@@ -103,6 +103,8 @@
                   :placeholder="data.level"
                 />
               </a-form-item>
+            </a-col>
+            <a-col :span="18">
               <a-form-item v-bind="formItemLayout" label="状态">
                 <a-input
                   v-decorator="[
@@ -116,11 +118,12 @@
                     }
                   ]"
                   :placeholder="data.state"
-                /> </a-form-item
-            ></a-col>
-            <a-col :span="12">
+                />
+              </a-form-item>
               <a-form-item v-bind="formItemLayout" label="内容">
-                <a-textarea
+                <Editor
+                  :data="data.context"
+                  @change="editorChange"
                   v-decorator="[
                     'context',
                     {
@@ -132,9 +135,8 @@
                       ]
                     }
                   ]"
-                  :placeholder="data.context"
                   :autosize="{ minRows: 18 }"
-                />
+                ></Editor>
               </a-form-item>
             </a-col>
           </a-row>
@@ -145,7 +147,11 @@
 </template>
 
 <script>
+import Editor from "@/components/editor/editor";
 export default {
+  components: {
+    Editor
+  },
   props: {
     data: {
       type: Object,
@@ -164,14 +170,8 @@ export default {
     return {
       visiAble: false,
       formItemLayout: {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 5 }
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 18 }
-        }
+        labelCol: { span: 24 },
+        wrapperCol: { span: 24 }
       }
     };
   },
@@ -196,6 +196,9 @@ export default {
     },
     handleCancel() {
       this.$emit("handleCancel");
+    },
+    editorChange(context) {
+      console.log(context);
     }
   }
 };

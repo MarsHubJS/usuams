@@ -1,201 +1,130 @@
 <template>
   <a-modal
-    title="编辑报名信息"
+    title="编辑例会"
     v-model="visiAble"
     @cancel="handleCancel"
     @ok="handleOk"
+    width="1080px"
   >
     <a-row type="flex" justify="center">
-      <a-col :span="20">
+      <a-col :span="24">
         <a-form :form="form">
-          <a-form-item v-bind="formItemLayout" label="姓名">
-            <a-input
-              v-decorator="[
-                'name',
-                {
-                  rules: [
+          <a-row :gutter="16">
+            <a-col :span="6">
+              <a-form-item v-bind="formItemLayout" label="例会名称">
+                <a-input
+                  v-decorator="[
+                    'name',
                     {
-                      required: true,
-                      message: '必须填写姓名'
+                      rules: [
+                        {
+                          required: true,
+                          message: '必须填写事务名称'
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.name"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="学号">
-            <a-input
-              v-decorator="[
-                'number',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.name"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="开会时间">
+                <a-input
+                  v-decorator="[
+                    'meet_date',
                     {
-                      required: true,
-                      message: '必须填写学号'
+                      rules: [
+                        {
+                          required: true,
+                          message: '必须填写学号'
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.number"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="性别">
-            <a-input
-              v-decorator="[
-                'sex',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.meet_date"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="记录时间">
+                <a-input
+                  v-decorator="[
+                    'upload_date',
                     {
-                      required: true
+                      rules: [
+                        {
+                          required: true
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.sex"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="学院">
-            <a-input
-              v-decorator="[
-                'collage',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.upload_date"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="例会部门">
+                <a-input
+                  v-decorator="[
+                    'department',
                     {
-                      required: true
+                      rules: [
+                        {
+                          required: true
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.collage"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="专业">
-            <a-input
-              v-decorator="[
-                'major',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.department"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="记录人">
+                <a-input
+                  v-decorator="[
+                    'recorder',
                     {
-                      required: true
+                      rules: [
+                        {
+                          required: true
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.major"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="年级">
-            <a-input
-              v-decorator="[
-                'grade',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.recorder"
+                />
+              </a-form-item>
+            </a-col>
+            <a-col :span="18">
+              <a-form-item v-bind="formItemLayout" label="参会人">
+                <a-input
+                  v-decorator="[
+                    'participant',
                     {
-                      required: true
+                      rules: [
+                        {
+                          required: true
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.grade"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="班级">
-            <a-input
-              v-decorator="[
-                'class',
-                {
-                  rules: [
+                  ]"
+                  :placeholder="data.participant"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="内容">
+                <Editor
+                  :data="data.context"
+                  @change="editorChange"
+                  v-decorator="[
+                    'context',
                     {
-                      required: true
+                      rules: [
+                        {
+                          required: true,
+                          message: '至少填写一个志愿部门'
+                        }
+                      ]
                     }
-                  ]
-                }
-              ]"
-              :placeholder="data.class"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="用户类型">
-            <a-select
-              v-decorator="[
-                'user_type',
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: '必须选择用户身份类型'
-                    }
-                  ]
-                }
-              ]"
-              placeholder="请选择用户身份类型"
-            >
-              <!-- <a-select-option value="1">
-                超级管理员
-              </a-select-option>
-              <a-select-option value="2">
-                指导老师
-              </a-select-option>
-              <a-select-option value="3">
-                主席团
-              </a-select-option>
-              <a-select-option value="4">
-                部长团
-              </a-select-option>
-              <a-select-option value="5">
-                干事
-              </a-select-option> -->
-              <a-select-option value="6">
-                会外人员
-              </a-select-option>
-            </a-select>
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="第一志愿">
-            <a-input
-              v-decorator="[
-                'depa1',
-                {
-                  rules: [
-                    {
-                      required: true,
-                      message: '至少填写一个志愿部门'
-                    }
-                  ]
-                }
-              ]"
-              :placeholder="data.depa1"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="第二志愿">
-            <a-input
-              v-decorator="[
-                'depa2',
-                {
-                  rules: [
-                    {
-                      required: false
-                    }
-                  ]
-                }
-              ]"
-              :placeholder="data.depa2"
-            />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="第三志愿">
-            <a-input
-              v-decorator="[
-                'depa3',
-                {
-                  rules: [
-                    {
-                      required: false
-                    }
-                  ]
-                }
-              ]"
-              :placeholder="data.depa3"
-            />
-          </a-form-item>
+                  ]"
+                  :autosize="{ minRows: 18 }"
+                ></Editor>
+              </a-form-item>
+            </a-col>
+          </a-row>
         </a-form>
       </a-col>
     </a-row>
@@ -203,7 +132,11 @@
 </template>
 
 <script>
+import Editor from "@/components/editor/editor";
 export default {
+  components: {
+    Editor
+  },
   props: {
     data: {
       type: Object,
@@ -222,14 +155,8 @@ export default {
     return {
       visiAble: false,
       formItemLayout: {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 5 }
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 }
-        }
+        labelCol: { span: 24 },
+        wrapperCol: { span: 24 }
       }
     };
   },
@@ -254,6 +181,9 @@ export default {
     },
     handleCancel() {
       this.$emit("handleCancel");
+    },
+    editorChange(context) {
+      console.log(context);
     }
   }
 };

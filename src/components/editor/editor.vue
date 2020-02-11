@@ -8,22 +8,21 @@
 <script>
 import E from "wangeditor";
 export default {
-  data() {
-    return {
-      editorContent: ""
-    };
-  },
-  methods: {
-    getContent: function() {
-      alert(this.editorContent);
+  props: {
+    data: {
+      type: String,
+      default: () => {
+        return "";
+      }
     }
   },
   mounted() {
     var editor = new E("#editorMenu", "#editor");
     editor.customConfig.onchange = html => {
-      this.editorContent = html;
+      this.$emit("change", html);
     };
     editor.create();
+    editor.txt.html(this.data);
   }
 };
 </script>
@@ -33,9 +32,9 @@ export default {
   border: 1px solid #ccc;
 }
 .editor {
-  margin-top: -1px; //将多出来的一像素边框隐藏
+  margin-top: -1px;
   border: 1px solid #ccc;
-  min-height: 400px; //编辑框最小高度
-  height: auto; //编辑框高度超过最小高度会根据内容高度自适应
+  height: 400px;
+  overflow: auto;
 }
 </style>

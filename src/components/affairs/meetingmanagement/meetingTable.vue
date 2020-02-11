@@ -10,7 +10,7 @@
     <div slot="time" slot-scope="text">
       <span>{{ moment(text * 1000).format("YYYY-MM-DD HH:mm:ss") }}</span>
     </div>
-    <div slot="operation">
+    <div slot="operation" slot-scope="text, record">
       <a>查看</a>
       <a-divider type="vertical"></a-divider>
       <a @click="editMeeting(record)">编辑</a>
