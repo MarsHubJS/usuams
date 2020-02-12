@@ -68,7 +68,7 @@
               <a-form-item v-bind="formItemLayout" label="负责人">
                 <a-input
                   v-decorator="[
-                    'leader_name',
+                    'leader',
                     {
                       rules: [
                         {
@@ -77,13 +77,13 @@
                       ]
                     }
                   ]"
-                  placeholder="data.leader_name"
+                  placeholder="data.leader"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="审核人">
                 <a-input
                   v-decorator="[
-                    'reviewer_name',
+                    'reviewer',
                     {
                       rules: [
                         {
@@ -92,7 +92,7 @@
                       ]
                     }
                   ]"
-                  placeholder="data.reviewer_name"
+                  placeholder="data.reviewer"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="优先级">
@@ -111,7 +111,7 @@
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="状态">
-                <a-input
+                <a-select
                   v-decorator="[
                     'state',
                     {
@@ -122,8 +122,21 @@
                       ]
                     }
                   ]"
-                  placeholder="data.state"
-                />
+                  placeholder="请选择事务状态"
+                >
+                  <a-select-option value="待审核">
+                    待审核
+                  </a-select-option>
+                  <a-select-option value="已创建">
+                    已创建
+                  </a-select-option>
+                  <a-select-option value="已开始">
+                    已开始
+                  </a-select-option>
+                  <a-select-option value="已结束">
+                    已结束
+                  </a-select-option>
+                </a-select>
               </a-form-item>
             </a-col>
             <a-col :span="16">
