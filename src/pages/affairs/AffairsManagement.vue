@@ -120,13 +120,13 @@ export default {
       this.editData = data;
       this.editVisiable = true;
     },
-    editHandelOk() {
+    editHandelOk(values) {
       console.log("隐藏弹窗");
       this.editVisiable = false;
-      // this.$http.put(`affair/${this.editData.id}`, values).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+      this.$http.put(`affair/${this.editData.id}`, values).then(res => {
+        console.log(res);
+        this.getData();
+      });
     },
     editHandelCancel() {
       console.log("关闭弹窗");

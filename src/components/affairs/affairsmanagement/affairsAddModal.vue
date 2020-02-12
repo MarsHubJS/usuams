@@ -28,7 +28,7 @@
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="开始时间">
-                <a-input
+                <a-date-picker
                   v-decorator="[
                     'start_date',
                     {
@@ -40,22 +40,29 @@
                       ]
                     }
                   ]"
+                  :showTime="{ format: 'HH:mm' }"
                   placeholder="data.start_date"
+                  style="width:100%"
+                  @ok="selectStart"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="结束时间">
-                <a-input
+                <a-date-picker
                   v-decorator="[
                     'end_date',
                     {
                       rules: [
                         {
-                          required: true
+                          required: true,
+                          message: '必须填写学号'
                         }
                       ]
                     }
                   ]"
+                  :showTime="{ format: 'HH:mm' }"
                   placeholder="data.end_date"
+                  style="width:100%"
+                  @ok="selectEnd"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="负责人">
@@ -163,6 +170,8 @@ export default {
     return {
       visiAble: false,
       context: "",
+      start_date: "",
+      end_date: "",
       formItemLayout: {
         labelCol: { span: 24 },
         wrapperCol: { span: 24 }
@@ -184,6 +193,8 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
+        values.start_date = this.start_date;
+        values.end_date = this.end_date;
         this.$emit("handleOk", { ...values, context: this.context });
         this.form.resetFields();
       });
@@ -194,6 +205,14 @@ export default {
     editorChange(context) {
       console.log(context);
       this.context = context;
+    },
+    selectStart(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.start_date = this.moment(value).valueOf() / 1000;
+    },
+    selectEnd(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.end_date = this.moment(value).valueOf() / 1000;
     }
   }
 };

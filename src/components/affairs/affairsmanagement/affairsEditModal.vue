@@ -170,6 +170,7 @@ export default {
   data() {
     return {
       visiAble: false,
+      context: "",
       formItemLayout: {
         labelCol: { span: 24 },
         wrapperCol: { span: 24 }
@@ -191,7 +192,7 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
-        this.$emit("handleOk", values);
+        this.$emit("handleOk", { ...values, context: this.context });
         this.form.resetFields();
       });
     },
@@ -200,6 +201,7 @@ export default {
     },
     editorChange(context) {
       console.log(context);
+      this.context = context;
     }
   }
 };
