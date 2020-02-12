@@ -5,12 +5,13 @@
     @cancel="handleCancel"
     @ok="handleOk"
     width="1080px"
+    :destroyOnClose="true"
   >
     <a-row type="flex" justify="center">
       <a-col :span="24">
         <a-form :form="form">
           <a-row :gutter="16">
-            <a-col :span="6">
+            <a-col :span="8">
               <a-form-item v-bind="formItemLayout" label="事务名称">
                 <a-input
                   v-decorator="[
@@ -103,8 +104,6 @@
                   :placeholder="data.level"
                 />
               </a-form-item>
-            </a-col>
-            <a-col :span="18">
               <a-form-item v-bind="formItemLayout" label="状态">
                 <a-input
                   v-decorator="[
@@ -120,6 +119,8 @@
                   :placeholder="data.state"
                 />
               </a-form-item>
+            </a-col>
+            <a-col :span="16">
               <a-form-item v-bind="formItemLayout" label="内容">
                 <Editor
                   :data="data.context"

@@ -103,13 +103,13 @@ export default {
       console.log("显示弹窗");
       this.addVisiable = true;
     },
-    addHandelOk() {
+    addHandelOk(values) {
       console.log("隐藏弹窗");
       this.addVisiable = false;
-      // this.$http.post("affair", values).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+      this.$http.post("affair", values).then(res => {
+        console.log(res);
+        this.getData();
+      });
     },
     addHandelCancel() {
       console.log("关闭弹窗");

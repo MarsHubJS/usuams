@@ -10,7 +10,7 @@
       <a-col :span="24">
         <a-form :form="form">
           <a-row :gutter="16">
-            <a-col :span="6">
+            <a-col :span="8">
               <a-form-item v-bind="formItemLayout" label="事务名称">
                 <a-input
                   v-decorator="[
@@ -103,8 +103,6 @@
                   placeholder="data.level"
                 />
               </a-form-item>
-            </a-col>
-            <a-col :span="18">
               <a-form-item v-bind="formItemLayout" label="状态">
                 <a-input
                   v-decorator="[
@@ -120,6 +118,8 @@
                   placeholder="data.state"
                 />
               </a-form-item>
+            </a-col>
+            <a-col :span="16">
               <a-form-item v-bind="formItemLayout" label="内容">
                 <Editor
                   @change="editorChange"
@@ -162,6 +162,7 @@ export default {
   data() {
     return {
       visiAble: false,
+      context: "",
       formItemLayout: {
         labelCol: { span: 24 },
         wrapperCol: { span: 24 }
@@ -183,7 +184,7 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
-        this.$emit("handleOk", values);
+        this.$emit("handleOk", { ...values, context: this.context });
         this.form.resetFields();
       });
     },
@@ -192,6 +193,7 @@ export default {
     },
     editorChange(context) {
       console.log(context);
+      this.context = context;
     }
   }
 };

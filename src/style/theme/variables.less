@@ -1,5 +1,6 @@
 @import "~ant-design-vue/lib/style/themes/default.less";
 @primary-color: #1890ff; // 全局主色
+@layout-sider:#001529; // 侧边栏底色
 
 .setting {
   z-index: 10;
@@ -12,4 +13,9 @@
   justify-content: center;
   align-items: center;
   background-color: @primary-color;
+}
+
+.ant-layout-sider {
+    background: @layout-sider;
+    box-shadow: 0 0 10px #e8e8e8
 }

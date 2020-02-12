@@ -34,7 +34,7 @@ export default {
 .editor {
   margin-top: -1px;
   border: 1px solid #ccc;
-  height: 400px;
+  height: 520px;
   overflow: auto;
 }
 </style>
