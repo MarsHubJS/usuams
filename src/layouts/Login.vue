@@ -2,66 +2,87 @@
   <a-row class="bg" type="flex" justify="center" align="middle">
     <a-col :span="8"></a-col>
     <a-col :span="5">
-      <h1 style="text-align:center">高校学生会事务管理系统</h1>
-      <a-form
-        id="components-form-demo-normal-login"
-        :form="form"
-        class="login-form"
-        @submit="handleSubmit"
-      >
-        <a-form-item>
-          <a-input
-            v-decorator="[
-              'username',
-              {
-                rules: [{ required: true, message: '请输入用户名' }]
-              }
-            ]"
-            placeholder="用户名"
+      <a-row>
+        <a-col :span="24">
+          <div align="center">
+            <img src="../assets/light.png" style="height:120px;" alt="logo" />
+          </div>
+          <h1 style="margin:20px 0;text-align:center">
+            高校学生会事务管理系统
+          </h1>
+          <a-form
+            id="components-form-demo-normal-login"
+            :form="form"
+            class="login-form"
+            @submit="handleSubmit"
           >
-            <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-input
-            v-decorator="[
-              'password',
-              {
-                rules: [{ required: true, message: '请输入密码' }]
-              }
-            ]"
-            type="password"
-            placeholder="密码"
-          >
-            <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-          </a-input>
-        </a-form-item>
-        <a-form-item>
-          <a-checkbox
-            v-decorator="[
-              'remember',
-              {
-                valuePropName: 'checked',
-                initialValue: true
-              }
-            ]"
-          >
-            记住我
-          </a-checkbox>
-          <!-- <a class="login-form-forgot" href="">
+            <a-form-item>
+              <a-input
+                v-decorator="[
+                  'username',
+                  {
+                    rules: [{ required: true, message: '请输入用户名' }]
+                  }
+                ]"
+                placeholder="用户名"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="user"
+                  style="color: rgba(0,0,0,.25)"
+                />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-input
+                v-decorator="[
+                  'password',
+                  {
+                    rules: [{ required: true, message: '请输入密码' }]
+                  }
+                ]"
+                type="password"
+                placeholder="密码"
+              >
+                <a-icon
+                  slot="prefix"
+                  type="lock"
+                  style="color: rgba(0,0,0,.25)"
+                />
+              </a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-checkbox
+                v-decorator="[
+                  'remember',
+                  {
+                    valuePropName: 'checked',
+                    initialValue: true
+                  }
+                ]"
+              >
+                记住我
+              </a-checkbox>
+              <!-- <a class="login-form-forgot" href="">
             忘记密码
           </a> -->
-          <a-button type="primary" html-type="submit" class="login-form-button">
-            登录
-          </a-button>
-          或
-          <a>
-            <router-link :to="{ path: '/sign' }">
-              加入学生会！
-            </router-link>
-          </a>
-        </a-form-item>
-      </a-form>
+              <a-button
+                type="primary"
+                html-type="submit"
+                class="login-form-button"
+              >
+                登录
+              </a-button>
+              或
+              <a>
+                <router-link :to="{ path: '/sign' }">
+                  加入学生会！
+                </router-link>
+              </a>
+            </a-form-item>
+          </a-form>
+        </a-col>
+      </a-row>
     </a-col>
   </a-row>
 </template>

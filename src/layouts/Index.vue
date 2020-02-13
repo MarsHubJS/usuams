@@ -6,7 +6,11 @@
       collapsible
       v-model="collapsed"
     >
-      <div class="logo" />
+      <img
+        class="logo"
+        :src="require(`../assets/${this.$store.state.theme.sider}.png`)"
+        alt="logo"
+      />
       <a-menu
         :openKeys="openKeys"
         :defaultSelectedKeys="[`${this.$route.meta.key}`]"
@@ -181,8 +185,8 @@ export default {
 }
 
 #components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
+  width: 100%;
+  padding: 5% 5%;
+  transition: width 0.2s;
 }
 </style>
