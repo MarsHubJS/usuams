@@ -1,5 +1,5 @@
 <template>
-  <a-layout style="min-height:100%" id="components-layout-demo-custom-trigger">
+  <a-layout style="height:100%" id="components-layout-demo-custom-trigger">
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu

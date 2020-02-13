@@ -28,9 +28,30 @@
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="开会时间">
-                <a-input
+                <a-date-picker
                   v-decorator="[
-                    'meet_date',
+                    'meeting_date',
+                    {
+                      rules: [
+                        {
+                          required: true,
+                          message: '必须选择开会时间'
+                        }
+                      ]
+                    }
+                  ]"
+                  :showTime="{ format: 'HH:mm' }"
+                  :placeholder="
+                    moment(data.meeting_date * 1000).format('YYYY-MM-DD HH:mm')
+                  "
+                  style="width:100%"
+                  @ok="selectMeeting"
+                />
+              </a-form-item>
+              <a-form-item v-bind="formItemLayout" label="记录时间">
+                <a-date-picker
+                  v-decorator="[
+                    'upload_date',
                     {
                       rules: [
                         {
@@ -40,22 +61,14 @@
                       ]
                     }
                   ]"
-                  :placeholder="data.meet_date"
-                />
-              </a-form-item>
-              <a-form-item v-bind="formItemLayout" label="记录时间">
-                <a-input
-                  v-decorator="[
-                    'upload_date',
-                    {
-                      rules: [
-                        {
-                          required: true
-                        }
-                      ]
-                    }
-                  ]"
-                  :placeholder="data.upload_date"
+                  :showTime="{
+                    format: 'HH:mm'
+                  }"
+                  :placeholder="
+                    moment(data.upload_date * 1000).format('YYYY-MM-DD HH:mm')
+                  "
+                  style="width:100%"
+                  @ok="selectUpload"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="例会部门">
@@ -154,6 +167,9 @@ export default {
   data() {
     return {
       visiAble: false,
+      context: "",
+      meeting_date: "",
+      upload_date: "",
       formItemLayout: {
         labelCol: { span: 24 },
         wrapperCol: { span: 24 }
@@ -175,7 +191,9 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
-        this.$emit("handleOk", values);
+        values.meeting_date = this.meeting_date;
+        values.upload_date = this.upload_date;
+        this.$emit("handleOk", { ...values, context: this.context });
         this.form.resetFields();
       });
     },
@@ -184,6 +202,15 @@ export default {
     },
     editorChange(context) {
       console.log(context);
+      this.context = context;
+    },
+    selectMeeting(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.meeting_date = this.moment(value).valueOf() / 1000;
+    },
+    selectUpload(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.upload_date = this.moment(value).valueOf() / 1000;
     }
   }
 };

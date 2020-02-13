@@ -86,17 +86,21 @@
           margin: '16px',
           padding: '24px',
           background: '#fff',
-          height: '100%',
-          overflow: 'auto'
+          height: 'auto'
         }"
       >
+        <Setting></Setting>
         <router-view />
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 <script>
+import Setting from "@/components/setting/setting";
 export default {
+  components: {
+    Setting
+  },
   data() {
     return {
       collapsed: false,

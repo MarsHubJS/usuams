@@ -91,13 +91,13 @@ export default {
       console.log("显示弹窗");
       this.addVisiable = true;
     },
-    addHandelOk() {
+    addHandelOk(values) {
       console.log("隐藏弹窗");
       this.addVisiable = false;
-      // this.$http.post("affair", values).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+      this.$http.post("meeting", values).then(res => {
+        console.log(res);
+        this.getData();
+      });
     },
     addHandelCancel() {
       console.log("关闭弹窗");
@@ -108,13 +108,13 @@ export default {
       this.editData = data;
       this.editVisiable = true;
     },
-    editHandelOk() {
+    editHandelOk(values) {
       console.log("隐藏弹窗");
       this.editVisiable = false;
-      // this.$http.put(`affair/${this.editData.id}`, values).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+      this.$http.put(`meeting/${this.editData.id}`, values).then(res => {
+        console.log(res);
+        this.getData();
+      });
     },
     editHandelCancel() {
       console.log("关闭弹窗");

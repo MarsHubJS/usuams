@@ -31,7 +31,7 @@ const columns = [
   },
   {
     title: "开会时间",
-    dataIndex: "meet_date",
+    dataIndex: "meeting_date",
     scopedSlots: { customRender: "time" },
     align: "center"
   },
