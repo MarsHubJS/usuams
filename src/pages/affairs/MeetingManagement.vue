@@ -120,11 +120,11 @@ export default {
       console.log("关闭弹窗");
       this.editVisiable = false;
     },
-    deleteMeeting() {
-      // this.$http.delete(`affair/${id}`).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+    deleteMeeting(id) {
+      this.$http.delete(`meeting/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
     }
   }
 };

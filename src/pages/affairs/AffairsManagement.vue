@@ -132,11 +132,11 @@ export default {
       console.log("关闭弹窗");
       this.editVisiable = false;
     },
-    deleteAffairs() {
-      // this.$http.delete(`affair/${id}`).then(res => {
-      //   console.log(res);
-      //   this.getData();
-      // });
+    deleteAffairs(id) {
+      this.$http.delete(`affair/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
     }
   }
 };
