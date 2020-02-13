@@ -12,6 +12,10 @@ export default new Vuex.Store({
       uid: "",
       type: "",
       depa: ""
+    },
+    theme: {
+      color: "#1890ff",
+      sider: "dark"
     }
   },
   mutations: {
@@ -26,6 +30,12 @@ export default new Vuex.Store({
       state.loginInfo.uid = "";
       state.loginInfo.type = "";
       state.loginInfo.depa = "";
+    },
+    siderTheme(state, color) {
+      state.theme.sider = color;
+    },
+    colorTheme(state, color) {
+      state.theme.color = color;
     }
   },
   actions: {
@@ -33,6 +43,12 @@ export default new Vuex.Store({
       context.commit("resetLoginInfo");
       sessionStorage.clear();
       router.push("/login");
+    },
+    changeColorTheme(context, color) {
+      context.commit("colorTheme", color);
+      window.less.modifyVars({
+        "@primary-color": color
+      });
     }
   },
   modules: {},

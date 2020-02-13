@@ -1,12 +1,17 @@
 <template>
   <a-layout style="height:100%" id="components-layout-demo-custom-trigger">
-    <a-layout-sider :trigger="null" collapsible v-model="collapsed">
+    <a-layout-sider
+      :theme="this.$store.state.theme.sider"
+      :trigger="null"
+      collapsible
+      v-model="collapsed"
+    >
       <div class="logo" />
       <a-menu
         :openKeys="openKeys"
         :defaultSelectedKeys="[`${this.$route.meta.key}`]"
         mode="inline"
-        theme="dark"
+        :theme="this.$store.state.theme.sider"
         :inlineCollapsed="collapsed"
         @openChange="openChange"
       >

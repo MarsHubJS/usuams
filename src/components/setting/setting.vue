@@ -100,14 +100,14 @@
           <div
             style="background-color:#ffffff"
             class="sider"
-            @click="changeSider('#ffffff')"
+            @click="changeSider('light')"
           ></div>
         </a-col>
         <a-col :span="10">
           <div
             style="background-color:#001529"
             class="sider"
-            @click="changeSider('#001529')"
+            @click="changeSider('dark')"
           ></div>
         </a-col>
       </a-row>
@@ -119,9 +119,7 @@
 export default {
   data() {
     return {
-      visible: false,
-      primaryColor: "",
-      siderColor: ""
+      visible: false
     };
   },
   methods: {
@@ -135,20 +133,10 @@ export default {
       this.visible = false;
     },
     changeTheme(primaryColor) {
-      console.log(primaryColor);
-      this.primaryColor = primaryColor;
-      window.less.modifyVars({
-        "@primary-color": primaryColor,
-        "@layout-header-background": this.siderColor
-      });
+      this.$store.dispatch("changeColorTheme", primaryColor);
     },
     changeSider(siderColor) {
-      console.log(siderColor);
-      this.siderColor = siderColor;
-      window.less.modifyVars({
-        "@primary-color": this.primaryColor,
-        "@layout-header-background": siderColor
-      });
+      this.$store.commit("siderTheme", siderColor);
     }
   }
 };

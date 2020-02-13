@@ -148,6 +148,7 @@ new Vue({
   store,
   render: h => h(App),
   created() {
+    this.$store.dispatch("changeColorTheme", this.$store.state.theme.color);
     let type = sessionStorage.getItem("type");
     if (type !== "") {
       switch (parseInt(type)) {
