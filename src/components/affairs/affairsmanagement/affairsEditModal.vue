@@ -1,11 +1,10 @@
 <template>
   <a-modal
-    title="编辑事务"
+    title="新增事务"
     v-model="visiAble"
     @cancel="handleCancel"
     @ok="handleOk"
     width="1080px"
-    :destroyOnClose="true"
   >
     <a-row type="flex" justify="center">
       <a-col :span="24">
@@ -29,7 +28,7 @@
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="开始时间">
-                <a-input
+                <a-date-picker
                   v-decorator="[
                     'start_date',
                     {
@@ -41,28 +40,41 @@
                       ]
                     }
                   ]"
-                  :placeholder="data.start_date"
+                  :showTime="{ format: 'HH:mm' }"
+                  :placeholder="
+                    this.moment(data.start_date * 1000).format(
+                      'YYYY-MM-DD HH:mm'
+                    )
+                  "
+                  style="width:100%"
+                  @ok="selectStart"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="结束时间">
-                <a-input
+                <a-date-picker
                   v-decorator="[
                     'end_date',
                     {
                       rules: [
                         {
-                          required: true
+                          required: true,
+                          message: '必须填写学号'
                         }
                       ]
                     }
                   ]"
-                  :placeholder="data.end_date"
+                  :showTime="{ format: 'HH:mm' }"
+                  :placeholder="
+                    this.moment(data.end_date * 1000).format('YYYY-MM-DD HH:mm')
+                  "
+                  style="width:100%"
+                  @ok="selectEnd"
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="负责人">
                 <a-input
                   v-decorator="[
-                    'leader_name',
+                    'leader',
                     {
                       rules: [
                         {
@@ -77,7 +89,7 @@
               <a-form-item v-bind="formItemLayout" label="审核人">
                 <a-input
                   v-decorator="[
-                    'reviewer_name',
+                    'reviewer',
                     {
                       rules: [
                         {
@@ -105,7 +117,7 @@
                 />
               </a-form-item>
               <a-form-item v-bind="formItemLayout" label="状态">
-                <a-input
+                <a-select
                   v-decorator="[
                     'state',
                     {
@@ -117,7 +129,20 @@
                     }
                   ]"
                   :placeholder="data.state"
-                />
+                >
+                  <a-select-option value="待审核">
+                    待审核
+                  </a-select-option>
+                  <a-select-option value="已创建">
+                    已创建
+                  </a-select-option>
+                  <a-select-option value="已开始">
+                    已开始
+                  </a-select-option>
+                  <a-select-option value="已结束">
+                    已结束
+                  </a-select-option>
+                </a-select>
               </a-form-item>
             </a-col>
             <a-col :span="16">
@@ -171,6 +196,8 @@ export default {
     return {
       visiAble: false,
       context: "",
+      start_date: "",
+      end_date: "",
       formItemLayout: {
         labelCol: { span: 24 },
         wrapperCol: { span: 24 }
@@ -192,6 +219,8 @@ export default {
           return;
         }
         console.log("Received values of form: ", values);
+        values.start_date = this.start_date;
+        values.end_date = this.end_date;
         this.$emit("handleOk", { ...values, context: this.context });
         this.form.resetFields();
       });
@@ -202,6 +231,14 @@ export default {
     editorChange(context) {
       console.log(context);
       this.context = context;
+    },
+    selectStart(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.start_date = this.moment(value).valueOf() / 1000;
+    },
+    selectEnd(value) {
+      console.log("onOk: ", this.moment(value).valueOf() / 1000);
+      this.end_date = this.moment(value).valueOf() / 1000;
     }
   }
 };
