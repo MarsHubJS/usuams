@@ -94,6 +94,23 @@
         </a-col>
       </a-row>
       <a-divider></a-divider>
+      <h4>侧边栏主题</h4>
+      <a-row>
+        <a-col :span="10">
+          <div
+            style="background-color:#ffffff"
+            class="sider"
+            @click="changeSider('#ffffff')"
+          ></div>
+        </a-col>
+        <a-col :span="10">
+          <div
+            style="background-color:#001529"
+            class="sider"
+            @click="changeSider('#001529')"
+          ></div>
+        </a-col>
+      </a-row>
     </a-drawer>
   </div>
 </template>
@@ -102,7 +119,9 @@
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
+      primaryColor: "",
+      siderColor: ""
     };
   },
   methods: {
@@ -116,8 +135,19 @@ export default {
       this.visible = false;
     },
     changeTheme(primaryColor) {
+      console.log(primaryColor);
+      this.primaryColor = primaryColor;
       window.less.modifyVars({
-        "@primary-color": primaryColor
+        "@primary-color": primaryColor,
+        "@layout-header-background": this.siderColor
+      });
+    },
+    changeSider(siderColor) {
+      console.log(siderColor);
+      this.siderColor = siderColor;
+      window.less.modifyVars({
+        "@primary-color": this.primaryColor,
+        "@layout-header-background": siderColor
       });
     }
   }
@@ -141,6 +171,11 @@ export default {
 .color {
   border: solid 1px gray;
   height: 20px;
+  width: 80%;
+}
+.sider {
+  border: solid 1px gray;
+  height: 50px;
   width: 80%;
 }
 </style>
