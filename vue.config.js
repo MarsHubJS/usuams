@@ -39,21 +39,19 @@ module.exports = {
       }
     }
   },
+  lintOnSave: true,
+  productionSourceMap: false,
   configureWebpack: {
-    plugins: [new AntDesignThemePlugin(options)]
+    plugins: [
+      // new CompressionPlugin({
+      //   // gzip压缩配置
+      //   test: /\.js$|\.html$|\.css/, // 匹配文件名
+      //   threshold: 10240, // 对超过10kb的数据进行压缩
+      //   deleteOriginalAssets: false // 是否删除原文件
+      // }),
+      new AntDesignThemePlugin(options)
+    ]
   }
-  // lintOnSave: true,
-  // productionSourceMap: false,
-  // configureWebpack: {
-  //   plugins: [
-  //     new CompressionPlugin({
-  //       // gzip压缩配置
-  //       test: /\.js$|\.html$|\.css/, // 匹配文件名
-  //       threshold: 10240, // 对超过10kb的数据进行压缩
-  //       deleteOriginalAssets: false // 是否删除原文件
-  //     })
-  //   ]
-  // },
   // chainWebpack: config => {
   //   config
   //     // 非开发环境
