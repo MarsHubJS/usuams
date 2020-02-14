@@ -24,8 +24,10 @@
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
       <div slot="operation" slot-scope="text, record">
-        <!-- <a @click="showUser(text)">查看</a>
-        <a-divider type="vertical"></a-divider> -->
+        <a>同意</a>
+        <a-divider type="vertical"></a-divider>
+        <a>拒绝</a>
+        <a-divider type="vertical"></a-divider>
         <a @click="editGuest(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
         <a-popconfirm title="确定要删除?" @confirm="deleteGuest(text)">
