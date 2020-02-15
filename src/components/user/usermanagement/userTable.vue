@@ -24,10 +24,18 @@
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
       <div slot="operation" slot-scope="text, record">
-        <a>留任</a>
-        <a-divider type="vertical"></a-divider>
-        <a>卸任</a>
-        <a-divider type="vertical"></a-divider>
+        <a v-show="$store.state.loginInfo.type < record.user_type">
+          留任
+        </a>
+        <a-divider
+          type="vertical"
+          v-show="$store.state.loginInfo.type < record.user_type"
+        ></a-divider>
+        <a v-show="$store.state.loginInfo.type < record.user_type">卸任</a>
+        <a-divider
+          type="vertical"
+          v-show="$store.state.loginInfo.type < record.user_type"
+        ></a-divider>
         <a @click="editUser(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
         <a-popconfirm title="确定要删除?" @confirm="deleteUser(text)">

@@ -5,9 +5,6 @@
         <a-button type="primary" @click="showAddModal">新增事务</a-button>
       </a-col>
       <a-col :span="2">
-        <a-button type="primary">批量审核</a-button>
-      </a-col>
-      <a-col :span="2">
         <a-button type="danger">批量删除</a-button>
       </a-col>
       <a-col :span="4">

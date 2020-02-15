@@ -14,8 +14,11 @@
     <div slot="operation" slot-scope="text, record">
       <a>查看</a>
       <a-divider type="vertical"></a-divider>
-      <a>通过审核</a>
-      <a-divider type="vertical"></a-divider>
+      <a v-show="$store.state.loginInfo.uid === record.reviewer">通过审核</a>
+      <a-divider
+        type="vertical"
+        v-show="$store.state.loginInfo.uid === record.reviewer"
+      ></a-divider>
       <a @click="editAffairs(record)">编辑</a>
       <a-divider type="vertical"></a-divider>
       <a-popconfirm title="确定要删除?" @confirm="deleteAffairs(text)">
