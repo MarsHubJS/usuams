@@ -24,18 +24,14 @@
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
       <div slot="operation" slot-scope="text, record">
-        <a v-show="$store.state.loginInfo.type < record.user_type">
-          留任
-        </a>
-        <a-divider
-          type="vertical"
-          v-show="$store.state.loginInfo.type < record.user_type"
-        ></a-divider>
-        <a v-show="$store.state.loginInfo.type < record.user_type">卸任</a>
-        <a-divider
-          type="vertical"
-          v-show="$store.state.loginInfo.type < record.user_type"
-        ></a-divider>
+        <a-popconfirm title="确定要使其留任?" @confirm="stay(text)">
+          <a @click="showStay()" v-show="record.user_type > 3">留任</a>
+        </a-popconfirm>
+        <a-divider type="vertical" v-show="record.user_type > 3"></a-divider>
+        <a-popconfirm title="确定要使其卸任?" @confirm="leave(text)">
+          <a @click="showLeave()" v-show="record.user_type > 2">卸任</a>
+        </a-popconfirm>
+        <a-divider type="vertical" v-show="record.user_type > 2"></a-divider>
         <a @click="editUser(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
         <a-popconfirm title="确定要删除?" @confirm="deleteUser(text)">
@@ -164,6 +160,26 @@ export default {
     deleteUser(id) {
       this.deleteVisiable = false;
       this.$emit("delete", id);
+    },
+    showStay() {
+      this.stayVisiable = true;
+    },
+    stay(id) {
+      this.stayVisiable = false;
+      this.$emit("stay", id);
+      this.$http.put(`stay/${id}`).then(res => {
+        console.log(res);
+      });
+    },
+    showLeave() {
+      this.leaveVisiable = true;
+    },
+    leave(id) {
+      this.leaveVisiable = false;
+      this.$emit("leave", id);
+      this.$http.put(`leave/${id}`).then(res => {
+        console.log(res);
+      });
     }
   }
 };

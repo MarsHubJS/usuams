@@ -18,6 +18,8 @@
           @change="handleTableChange"
           @edit="showEditModal"
           @delete="deleteUser"
+          @stay="stay"
+          @leave="leave"
         ></userTable>
       </a-col>
     </a-row>
@@ -137,6 +139,18 @@ export default {
     },
     deleteUser(id) {
       this.$http.delete(`user/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    stay(id) {
+      this.$http.put(`stay/${id}`).then(res => {
+        console.log(res);
+        this.getData();
+      });
+    },
+    leave(id) {
+      this.$http.put(`leave/${id}`).then(res => {
         console.log(res);
         this.getData();
       });
