@@ -9,6 +9,8 @@
         @change="handleTableChange"
         @edit="showEditModal"
         @delete="deleteGuest"
+        @agree="agree"
+        @refuse="refuse"
       ></outsideTable>
       <outsideAddModal
         :visiable="addVisiable"
@@ -69,9 +71,14 @@ export default {
       };
       this.$http.get("guest", { params }).then(res => {
         console.log(res);
-        this.loading = false;
-        this.data = res.data;
-        this.pagination.total = res.total;
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.loading = false;
+          this.data = res.data;
+          this.pagination.total = res.total;
+        } else {
+          this.$message.error(res.msg);
+        }
       });
     },
     handleTableChange(pagination) {
@@ -95,7 +102,12 @@ export default {
       this.addVisiable = false;
       this.$http.post("guest", values).then(res => {
         console.log(res);
-        this.getData();
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
       });
     },
     addHandelCancel() {
@@ -112,7 +124,12 @@ export default {
       this.editVisiable = false;
       this.$http.put(`guest/${this.editData.id}`, values).then(res => {
         console.log(res);
-        this.getData();
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
       });
     },
     editHandelCancel() {
@@ -122,7 +139,37 @@ export default {
     deleteGuest(id) {
       this.$http.delete(`guest/${id}`).then(res => {
         console.log(res);
-        this.getData();
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
+      });
+    },
+    agree(id) {
+      let params = {
+        depa: this.$store.state.loginInfo.depa
+      };
+      this.$http.put(`agree/${id}`, params).then(res => {
+        console.log(res);
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
+      });
+    },
+    refuse(id) {
+      this.$http.put(`refuse/${id}`).then(res => {
+        console.log(res);
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
       });
     }
   }

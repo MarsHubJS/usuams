@@ -139,6 +139,8 @@ export default {
     return {
       columns,
       deleteVisiable: false,
+      stayVisiable: false,
+      leaveVisiable: false,
       rowSelection: {
         onChange: selectedRowKeys => {
           console.log(`selectedRowKeys: ${selectedRowKeys}`);
@@ -167,9 +169,6 @@ export default {
     stay(id) {
       this.stayVisiable = false;
       this.$emit("stay", id);
-      this.$http.put(`stay/${id}`).then(res => {
-        console.log(res);
-      });
     },
     showLeave() {
       this.leaveVisiable = true;
@@ -177,9 +176,6 @@ export default {
     leave(id) {
       this.leaveVisiable = false;
       this.$emit("leave", id);
-      this.$http.put(`leave/${id}`).then(res => {
-        console.log(res);
-      });
     }
   }
 };

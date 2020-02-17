@@ -24,9 +24,13 @@
         <a-tag v-show="text == 6" color="purple">会外人员</a-tag>
       </div>
       <div slot="operation" slot-scope="text, record">
-        <a>同意</a>
+        <a-popconfirm title="同意加入部门?" @confirm="agree(text)">
+          <a @click="showAgree()">同意</a>
+        </a-popconfirm>
         <a-divider type="vertical"></a-divider>
-        <a>拒绝</a>
+        <a-popconfirm title="拒绝加入部门?" @confirm="refuse(text)">
+          <a @click="showRefuse()">拒绝</a>
+        </a-popconfirm>
         <a-divider type="vertical"></a-divider>
         <a @click="editGuest(record)">编辑</a>
         <a-divider type="vertical"></a-divider>
@@ -139,6 +143,8 @@ export default {
     return {
       columns,
       deleteVisiable: false,
+      agreeVisiable: false,
+      refuseVisiable: false,
       rowSelection: {
         onChange: selectedRowKeys => {
           console.log(`selectedRowKeys: ${selectedRowKeys}`);
@@ -160,6 +166,20 @@ export default {
     deleteGuest(id) {
       this.deleteVisiable = false;
       this.$emit("delete", id);
+    },
+    showAgree() {
+      this.agreeVisiable = true;
+    },
+    agree(id) {
+      this.agreeVisiable = false;
+      this.$emit("agree", id);
+    },
+    showRefuse() {
+      this.refuseVisiable = true;
+    },
+    refuse(id) {
+      this.refuseVisiable = false;
+      this.$emit("refuse", id);
     }
   }
 };
