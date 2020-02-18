@@ -18,6 +18,7 @@
           @change="handleTableChange"
           @edit="showEditModal"
           @delete="deleteAffairs"
+          @review="review"
         ></affairsTable>
         <affairsAddModal
           :visiable="addVisiable"
@@ -136,6 +137,17 @@ export default {
       this.$http.delete(`affair/${id}`).then(res => {
         console.log(res);
         this.getData();
+      });
+    },
+    review(id) {
+      this.$http.put(`review/${id}`).then(res => {
+        console.log(res);
+        if (res.code === 0) {
+          this.$message.success(res.msg);
+          this.getData();
+        } else {
+          this.$message.error(res.msg);
+        }
       });
     }
   }
