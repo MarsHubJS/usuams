@@ -6,10 +6,9 @@ services:
 
 before_install:
   - npm install
-  - npm install -g parcel-bundler
 
-# script:
-#   - parcel build ./server.js
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-#   - docker build -t kylvia/docker_demo:latest .
-#   - docker push kylvia/docker_demo:latest
+script:
+  - npm run build
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # - docker build -t kylvia/docker_demo:latest .
+  # - docker push kylvia/docker_demo:latest
