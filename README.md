@@ -14,4 +14,4 @@
 | Ant-design | 前端UI框架       | [https://element.eleme.io/](https://element.eleme.io/)                         |
 | Axios      | 前端HTTP框架     | [https://github.com/axios/axios](https://github.com/axios/axios)               |
 | Nprogress  | 进度条控件       | [https://github.com/rstacruz/nprogress](https://github.com/rstacruz/nprogress) |
-| Moment     | 时间管理库       |                                                                                |
+| Moment     | 时间管理库       | http://momentjs.cn/                                                                               |
